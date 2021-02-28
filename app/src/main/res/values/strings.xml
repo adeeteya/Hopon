@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Hop on</string>
+    <string name="game_mode1">Patterns</string>
+    <string name="game_mode2">Timed Mode</string>
+</resources>
