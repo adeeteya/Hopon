@@ -1,11 +1,14 @@
 package com.aditya.hopon;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS="sharedPrefs";
     public static final String enable_dark_mode="enabledarkmode";
     private boolean darkmodetoggle;
+    private LinearLayout patternmainlayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar=findViewById(R.id.main_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        patternmainlayout=findViewById(R.id.pattern_main_layout);
+        patternmainlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,patternsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
