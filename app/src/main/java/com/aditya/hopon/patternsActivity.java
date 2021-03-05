@@ -3,6 +3,7 @@ package com.aditya.hopon;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
@@ -13,6 +14,8 @@ import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.transition.Transition;
@@ -20,19 +23,24 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class patternsActivity extends AppCompatActivity {
+public class patternsActivity extends AppCompatActivity implements DeleteConfirmationDialog.DeleteConfirmationDialogListener{
     private TextView toolbartitle;
     private DBManager dbManager;
     private ListView listView;
     private SimpleCursorAdapter adapter;
+    private String id;
+    private Cursor cursor;
+    int opened=0;View v=null;
     final String[] from = new String[] { DatabaseHelper._ID,
             DatabaseHelper.NAME, DatabaseHelper.SEQUENCE,DatabaseHelper.MODE};
     final int[] to = new int[] { R.id.patternid, R.id.patternname, R.id.patternsequence , R.id.patternmode};
@@ -58,13 +66,13 @@ public class patternsActivity extends AppCompatActivity {
             editor.putBoolean("firstStart",false);
             editor.apply();
         }
-        Cursor cursor = dbManager.fetch();
+        cursor = dbManager.fetch();
         listView = (ListView) findViewById(R.id.patterns_list);
         listView.setEmptyView(findViewById(R.id.emptytextpattern));
         adapter = new SimpleCursorAdapter(this, R.layout.pattern_view_layout, cursor, from, to, 0);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
-        //OnCLickListener for List Items
+        //OnCLickListener for List
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
@@ -73,25 +81,10 @@ public class patternsActivity extends AppCompatActivity {
                 TextView sequenceTextView = (TextView) view.findViewById(R.id.patternsequence);
                 TextView patternmode = (TextView) view.findViewById(R.id.patternmode);
                 ImageView patternmodeic=(ImageView)view.findViewById(R.id.patternmodeic);
-                String id = idTextView.getText().toString();
+                id = idTextView.getText().toString();
                 String name = nameTextView.getText().toString();
                 String sequence = sequenceTextView.getText().toString();
-                //game mode handling
-                if(patternmode.getVisibility()== View.INVISIBLE){
-                    int mode=Integer.parseInt(patternmode.getText().toString());
-                    if(mode==1)patternmode.setText("Normal Mode");
-                    else if(mode==2){
-                        patternmodeic.setImageResource(R.drawable.ic_baseline_timer_24);
-                        patternmode.setText("Timed Mode");
-                    }
-                    patternmode.setVisibility(View.VISIBLE);
-                }
-                else{
-                    if(patternmode.getText().toString().equals("Normal Mode")){patternmode.setText("1");}
-                    else{patternmode.setText("2");}
-                    patternmode.setVisibility(View.INVISIBLE);
-                }
-                //game mode handling ends here
+
                 //pattern display
                 ImageView img1=(ImageView)view.findViewById(R.id.pattgrid1);
                 ImageView img2=(ImageView)view.findViewById(R.id.pattgrid2);
@@ -105,7 +98,6 @@ public class patternsActivity extends AppCompatActivity {
                 ImageView imgA=(ImageView)view.findViewById(R.id.pattgridA);
                 ImageView imgB=(ImageView)view.findViewById(R.id.pattgridB);
                 ImageView imgC=(ImageView)view.findViewById(R.id.pattgridC);
-
                 for(int i=0;i<sequence.length();i++){
                     if(sequence.charAt(i)=='1'){
                         i++;
@@ -158,16 +150,54 @@ public class patternsActivity extends AppCompatActivity {
                     }
                 }
                 //pattern display ends here
+                //button handling starts here
+                Button patternplaybutton=(Button) view.findViewById(R.id.patternplaybutton);
+                Button patterndeletebutton=(Button)view.findViewById(R.id.patterndeletebutton);
+                Button patternmodifybutton=(Button)view.findViewById(R.id.patternmodifybutton);
+                if(id.equals("1")){ patterndeletebutton.setEnabled(false);patternmodifybutton.setEnabled(false);}
+                patterndeletebutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DeleteConfirmationDialog dialog=new DeleteConfirmationDialog();
+                        dialog.show(getSupportFragmentManager(),"delete");
+                    }
+                });
+                //button handling ends here
                 //hidden layout handling
                 LinearLayout hiddenpatternlayout=(LinearLayout)view.findViewById(R.id.hiddenpatternlayout);
                 CardView patterncardview=(CardView)view.findViewById(R.id.patterncardview);
-                if(hiddenpatternlayout.getVisibility()==View.VISIBLE){
+                if(opened==0 && hiddenpatternlayout.getVisibility()==View.GONE){
+                    v=view;
+                    if(patternmode.getText().toString().equals("1"))patternmode.setText("Normal Mode");
+                    else if(patternmode.getText().toString().equals("2")){
+                        patternmodeic.setImageResource(R.drawable.ic_baseline_timer_24);
+                        patternmode.setText("Timed Mode");
+                    }
+                    patternmode.setVisibility(View.VISIBLE);
                     TransitionManager.beginDelayedTransition(patterncardview, new AutoTransition());
-                    hiddenpatternlayout.setVisibility(View.GONE);
+                    hiddenpatternlayout.setVisibility(View.VISIBLE);opened=1;
                 }
-                else{
+                else if(opened==1 && hiddenpatternlayout.getVisibility()==View.VISIBLE){
+                    if(patternmode.getText().toString().equals("Normal Mode")){patternmode.setText("1");}
+                    else{patternmode.setText("2");}
+                    patternmode.setVisibility(View.INVISIBLE);
                     TransitionManager.beginDelayedTransition(patterncardview, new AutoTransition());
+                    hiddenpatternlayout.setVisibility(View.GONE);opened=0;
+                }
+                else if(opened==1 && hiddenpatternlayout.getVisibility()==View.GONE){
+                    TextView temp=(TextView)v.findViewById(R.id.patternmode);
+                    if(temp.getText().toString().equals("Normal Mode")){temp.setText("1");}
+                    else{temp.setText("2");}
+                    temp.setVisibility(View.INVISIBLE);
+                    v.findViewById(R.id.hiddenpatternlayout).setVisibility(View.GONE);
+                    if(patternmode.getText().toString().equals("1"))patternmode.setText("Normal Mode");
+                    else if(patternmode.getText().toString().equals("2")){
+                        patternmodeic.setImageResource(R.drawable.ic_baseline_timer_24);
+                        patternmode.setText("Timed Mode");
+                    }
+                    patternmode.setVisibility(View.VISIBLE);
                     hiddenpatternlayout.setVisibility(View.VISIBLE);
+                    v=view;
                 }
                 //hidden layout handling ends here
             }
@@ -181,5 +211,15 @@ public class patternsActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onYesClicked() {
+        dbManager.delete(Integer.parseInt(id));
+        Toast.makeText(this, "Pattern Removed Successfully", Toast.LENGTH_SHORT).show();
+        cursor = dbManager.fetch();
+        adapter = new SimpleCursorAdapter(this, R.layout.pattern_view_layout, cursor, from, to, 0);
+        adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
     }
 }

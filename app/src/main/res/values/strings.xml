@@ -2,4 +2,10 @@
     <string name="app_name">Hop on</string>
     <string name="game_mode1">Patterns</string>
     <string name="game_mode2">Timed Mode</string>
+    <string name="play">Play</string>
+    <string name="delete">Delete</string>
+    <string-array name="gamemodes">
+        <item>Normal Mode</item>
+        <item>Timed Mode</item>
+    </string-array>
 </resources>

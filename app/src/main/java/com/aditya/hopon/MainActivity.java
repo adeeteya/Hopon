@@ -14,12 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS="sharedPrefs";
     public static final String enable_dark_mode="enabledarkmode";
     private boolean darkmodetoggle;
     private LinearLayout patternmainlayout;
+    private CardView custompatterncard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +37,18 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         patternmainlayout=findViewById(R.id.pattern_main_layout);
+        custompatterncard=findViewById(R.id.custompatterncard);
         patternmainlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,patternsActivity.class);
+                startActivity(intent);
+            }
+        });
+        custompatterncard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,UserGenActivity.class);
                 startActivity(intent);
             }
         });

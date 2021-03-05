@@ -168,6 +168,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/custompatterncard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

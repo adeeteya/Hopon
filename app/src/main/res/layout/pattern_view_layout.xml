@@ -162,6 +162,7 @@
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_gravity="center"
                         android:src="@drawable/box"/>
                     <ImageView
@@ -170,6 +171,7 @@
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_gravity="center"
                         android:src="@drawable/box"/>
                     <ImageView
@@ -178,9 +180,43 @@
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/box"/>
+                        android:src="@drawable/box" />
                 </GridLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/patterndeletebutton"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delete"
+                        android:textAllCaps="false"
+                        android:drawableStart="@drawable/ic_baseline_delete_24"/>
+                    <Button
+                        android:id="@+id/patternplaybutton"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:layout_height="wrap_content"
+                        android:text="@string/play"
+                        android:textAllCaps="false"
+                        android:drawableLeft="@drawable/ic_baseline_play_arrow_24"/>
+                    <Button
+                        android:id="@+id/patternmodifybutton"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:layout_height="wrap_content"
+                        android:text="Modify"
+                        android:textAllCaps="false"
+                        android:drawableLeft="@drawable/ic_baseline_system_update_alt_24"/>
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

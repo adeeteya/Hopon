@@ -56,6 +56,10 @@ public class DBManager {
 
     public void delete(long _id) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._ID + "=" + _id, null);
+        database.execSQL("create table temp ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, sequence TEXT, mode INTEGER);");
+        database.execSQL("insert into temp (name, sequence, mode) select name, sequence, mode from Patterns;");
+        database.execSQL("drop table Patterns;");
+        database.execSQL("alter table temp rename to Patterns;");
     }
 
 }
