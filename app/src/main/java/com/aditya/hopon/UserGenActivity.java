@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,13 +23,11 @@ import android.widget.Toast;
 
 public class UserGenActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private EditText nameinput;
-    private int gamemodechoice;
+    private int gamemodechoice,noofpatternscreated;
     private DBManager dbManager;
-    private String sequence="";
-    private Button submit;
-    private String name="";
-    private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnA,btnB,btnC;
-    private int s1=0,s2=0,s3=0,s4=0,s5=0,s6=0,s7=0,s8=0,s9=0,sA=0,sB=0,sC=0,bypass=0;
+    private String sequence="",name="";
+    private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnA,btnB,btnC,submit;
+    private int s1=0,s2=0,s3=0,s4=0,s5=0,s6=0,s7=0,s8=0,s9=0,sA=0,sB=0,sC=0,twotileno=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +47,11 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
         spinner.setOnItemSelectedListener(this);
         dbManager = new DBManager(this);
         dbManager.open();
+        SharedPreferences sharedPreferences=getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",2);
         nameinput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -60,7 +61,6 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
         btn1=findViewById(R.id.usergenbtn1);
@@ -69,18 +69,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s1==0){
                     sequence+="11";
-                    btn1.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s1++;
                 }
                 else if(s1==1){
                     sequence=sequence.replaceFirst("11","21");
-                    btn1.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s1++;
+                    btn1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s1++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("21","");
                     btn1.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s1=0;
+                    s1=0;twotileno--;
                 }
             }
         });
@@ -90,18 +90,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s2==0){
                     sequence+="12";
-                    btn2.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn2.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s2++;
                 }
                 else if(s2==1){
                     sequence=sequence.replaceFirst("12","22");
-                    btn2.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s2++;
+                    btn2.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s2++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("22","");
                     btn2.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s2=0;
+                    s2=0;twotileno--;
                 }
             }
         });
@@ -111,18 +111,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s3==0){
                     sequence+="13";
-                    btn3.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn3.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s3++;
                 }
                 else if(s3==1){
                     sequence=sequence.replaceFirst("13","23");
-                    btn3.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s3++;
+                    btn3.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s3++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("23","");
                     btn3.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s3=0;
+                    s3=0;twotileno--;
                 }
             }
         });
@@ -132,18 +132,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s4==0){
                     sequence+="14";
-                    btn4.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn4.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s4++;
                 }
                 else if(s4==1){
                     sequence=sequence.replaceFirst("14","24");
-                    btn4.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s4++;
+                    btn4.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s4++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("24","");
                     btn4.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s4=0;
+                    s4=0;twotileno--;
                 }
             }
         });
@@ -153,18 +153,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s5==0){
                     sequence+="15";
-                    btn5.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn5.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s5++;
                 }
                 else if(s5==1){
                     sequence=sequence.replaceFirst("15","25");
-                    btn5.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s5++;
+                    btn5.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s5++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("25","");
                     btn5.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s5=0;
+                    s5=0;twotileno--;
                 }
             }
         });
@@ -174,18 +174,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s6==0){
                     sequence+="16";
-                    btn6.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn6.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s6++;
                 }
                 else if(s6==1){
                     sequence=sequence.replaceFirst("16","26");
-                    btn6.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s6++;
+                    btn6.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s6++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("26","");
                     btn6.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s6=0;
+                    s6=0;twotileno--;
                 }
             }
         });
@@ -195,18 +195,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s7==0){
                     sequence+="17";
-                    btn7.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn7.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s7++;
                 }
                 else if(s7==1){
                     sequence=sequence.replaceFirst("17","27");
-                    btn7.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s7++;
+                    btn7.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s7++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("27","");
                     btn7.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s7=0;
+                    s7=0;twotileno--;
                 }
             }
         });
@@ -216,18 +216,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s8==0){
                     sequence+="18";
-                    btn8.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn8.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s8++;
                 }
                 else if(s8==1){
                     sequence=sequence.replaceFirst("18","28");
-                    btn8.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s8++;
+                    btn8.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s8++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("28","");
                     btn8.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s8=0;
+                    s8=0;twotileno--;
                 }
             }
         });
@@ -237,18 +237,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(s9==0){
                     sequence+="19";
-                    btn9.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btn9.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     s9++;
                 }
                 else if(s9==1){
                     sequence=sequence.replaceFirst("19","29");
-                    btn9.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    s9++;
+                    btn9.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    s9++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("29","");
                     btn9.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    s9=0;
+                    s9=0;twotileno--;
                 }
             }
         });
@@ -258,18 +258,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(sA==0){
                     sequence+="1A";
-                    btnA.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btnA.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     sA++;
                 }
                 else if(sA==1){
                     sequence=sequence.replaceFirst("1A","2A");
-                    btnA.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    sA++;
+                    btnA.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    sA++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("2A","");
                     btnA.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    sA=0;
+                    sA=0;twotileno--;
                 }
             }
         });
@@ -279,18 +279,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(sB==0){
                     sequence+="1B";
-                    btnB.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btnB.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     sB++;
                 }
                 else if(sB==1){
                     sequence=sequence.replaceFirst("1B","2B");
-                    btnB.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    sB++;
+                    btnB.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    sB++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("2B","");
                     btnB.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    sB=0;
+                    sB=0;twotileno--;
                 }
             }
         });
@@ -300,18 +300,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(sC==0){
                     sequence+="1C";
-                    btnC.setBackgroundTintList(ColorStateList.valueOf(0xFFFF0000));
+                    btnC.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
                     sC++;
                 }
                 else if(sC==1){
                     sequence=sequence.replaceFirst("1C","2C");
-                    btnC.setBackgroundTintList(ColorStateList.valueOf(0xFF0000FF));
-                    sC++;
+                    btnC.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                    sC++;twotileno++;
                 }
                 else{
                     sequence=sequence.replaceFirst("2C","");
                     btnC.setBackgroundTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                    sC=0;
+                    sC=0;twotileno--;
                 }
             }
         });
@@ -324,25 +324,20 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
                 else if(sequence.equals("")) {
                     Toast.makeText(UserGenActivity.this, "Please Make The Pattern", Toast.LENGTH_SHORT).show();
                 }
+                else if(twotileno%2==1){
+                    Toast.makeText(UserGenActivity.this, "Invalid Number of Double Tiles", Toast.LENGTH_SHORT).show();
+                }
                 else{
                     dbManager.insert(name, sequence, gamemodechoice);
+                    noofpatternscreated++;
+                    SharedPreferences.Editor editor=sharedPreferences.edit();
+                    editor.putInt("noofpatternscreated",noofpatternscreated);
+                    editor.apply();
                     Toast.makeText(UserGenActivity.this, "Custom Pattern Added", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
         });
-        /*
-        btn2=findViewById(R.id.usergenbtn2);btn2.setOnClickListener(this);btn2
-        btn3=findViewById(R.id.usergenbtn3);btn3.setOnClickListener(this);btn3
-        btn4=findViewById(R.id.usergenbtn4);btn4.setOnClickListener(this);btn4
-        btn5=findViewById(R.id.usergenbtn5);btn5.setOnClickListener(this);btn5
-        btn6=findViewById(R.id.usergenbtn6);btn6.setOnClickListener(this);btn6
-        btn7=findViewById(R.id.usergenbtn7);btn7.setOnClickListener(this);btn7
-        btn8=findViewById(R.id.usergenbtn8);btn8.setOnClickListener(this);btn8
-        btn9=findViewById(R.id.usergenbtn9);btn9.setOnClickListener(this);btn9
-        btnA=findViewById(R.id.usergenbtnA);btnA.setOnClickListener(this);btnA
-        btnB=findViewById(R.id.usergenbtnB);btnB.setOnClickListener(this);btnB
-        btnC=findViewById(R.id.usergenbtnC);btnC.setOnClickListener(this);*/
     }
 
     @Override

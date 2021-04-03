@@ -37,7 +37,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
     private TextView toolbartitle;
     private DBManager dbManager;
     private ListView listView;
-    private SimpleCursorAdapter adapter;
+    private Custom_Adapter adapter;
     private String id;
     private Cursor cursor;
     int opened=0;View v=null;
@@ -69,7 +69,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
         cursor = dbManager.fetch();
         listView = (ListView) findViewById(R.id.patterns_list);
         listView.setEmptyView(findViewById(R.id.emptytextpattern));
-        adapter = new SimpleCursorAdapter(this, R.layout.pattern_view_layout, cursor, from, to, 0);
+        adapter=new Custom_Adapter(this, R.layout.pattern_view_layout, cursor, from, to, 0);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
         //OnCLickListener for List
@@ -77,12 +77,9 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 TextView idTextView = (TextView) view.findViewById(R.id.patternid);
-                TextView nameTextView = (TextView) view.findViewById(R.id.patternname);
                 TextView sequenceTextView = (TextView) view.findViewById(R.id.patternsequence);
                 TextView patternmode = (TextView) view.findViewById(R.id.patternmode);
-                ImageView patternmodeic=(ImageView)view.findViewById(R.id.patternmodeic);
                 id = idTextView.getText().toString();
-                String name = nameTextView.getText().toString();
                 String sequence = sequenceTextView.getText().toString();
 
                 //pattern display
@@ -102,50 +99,50 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
                     if(sequence.charAt(i)=='1'){
                         i++;
                         switch(sequence.charAt(i)){
-                            case '1':img1.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case '2':img2.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case '3':img3.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case '4':img4.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case '5':img5.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case '6':img6.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case '7':img7.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case '8':img8.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case '9':img9.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case 'A':imgA.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case 'B':imgB.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
-                            case 'C':imgC.setImageTintList(ColorStateList.valueOf(0xFFFF0000));break;
+                            case '1':img1.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case '2':img2.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case '3':img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case '4':img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case '5':img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case '6':img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case '7':img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case '8':img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case '9':img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case 'A':imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case 'B':imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
+                            case 'C':imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));break;
                         }
                     }
                     else{
                         i++;
                         switch(sequence.charAt(i)){
-                            case '1':img1.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '2':img2.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '3':img3.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '4':img4.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '5':img5.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '6':img6.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '7':img7.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '8':img8.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '9':img9.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case 'A':imgA.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case 'B':imgB.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case 'C':imgC.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
+                            case '1':img1.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '2':img2.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '3':img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '4':img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '5':img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '6':img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '7':img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '8':img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '9':img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case 'A':imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case 'B':imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case 'C':imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
                         }
                         i+=2;
                         switch(sequence.charAt(i)){
-                            case '1':img1.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '2':img2.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '3':img3.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '4':img4.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '5':img5.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '6':img6.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '7':img7.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '8':img8.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case '9':img9.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case 'A':imgA.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case 'B':imgB.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
-                            case 'C':imgC.setImageTintList(ColorStateList.valueOf(0xFF0000FF));break;
+                            case '1':img1.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '2':img2.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '3':img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '4':img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '5':img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '6':img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '7':img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '8':img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case '9':img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case 'A':imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case 'B':imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
+                            case 'C':imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));break;
                         }
                     }
                 }
@@ -169,10 +166,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
                 if(opened==0 && hiddenpatternlayout.getVisibility()==View.GONE){
                     v=view;
                     if(patternmode.getText().toString().equals("1"))patternmode.setText("Normal Mode");
-                    else if(patternmode.getText().toString().equals("2")){
-                        patternmodeic.setImageResource(R.drawable.ic_baseline_timer_24);
-                        patternmode.setText("Timed Mode");
-                    }
+                    else if(patternmode.getText().toString().equals("2")){ patternmode.setText("Timed Mode");}
                     patternmode.setVisibility(View.VISIBLE);
                     TransitionManager.beginDelayedTransition(patterncardview, new AutoTransition());
                     hiddenpatternlayout.setVisibility(View.VISIBLE);opened=1;
@@ -191,10 +185,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
                     temp.setVisibility(View.INVISIBLE);
                     v.findViewById(R.id.hiddenpatternlayout).setVisibility(View.GONE);
                     if(patternmode.getText().toString().equals("1"))patternmode.setText("Normal Mode");
-                    else if(patternmode.getText().toString().equals("2")){
-                        patternmodeic.setImageResource(R.drawable.ic_baseline_timer_24);
-                        patternmode.setText("Timed Mode");
-                    }
+                    else if(patternmode.getText().toString().equals("2")){ patternmode.setText("Timed Mode"); }
                     patternmode.setVisibility(View.VISIBLE);
                     hiddenpatternlayout.setVisibility(View.VISIBLE);
                     v=view;
@@ -218,8 +209,15 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
         dbManager.delete(Integer.parseInt(id));
         Toast.makeText(this, "Pattern Removed Successfully", Toast.LENGTH_SHORT).show();
         cursor = dbManager.fetch();
-        adapter = new SimpleCursorAdapter(this, R.layout.pattern_view_layout, cursor, from, to, 0);
+        adapter=new Custom_Adapter(this, R.layout.pattern_view_layout, cursor, from, to, 0);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
+        int noofpatternscreated;
+        SharedPreferences sharedPreferences=getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",2);
+        noofpatternscreated--;
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putInt("noofpatternscreated",noofpatternscreated);
+        editor.apply();
     }
 }

@@ -1,27 +1,49 @@
 package com.aditya.hopon;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.DialogTitle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.google.android.gms.location.LocationRequest;
+
 public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS="sharedPrefs";
-    public static final String enable_dark_mode="enabledarkmode";
     private boolean darkmodetoggle;
+    private int noofpatternscreated;
     private LinearLayout patternmainlayout;
-    private CardView custompatterncard;
+    private String ssid = null;
+    final String FineLocation = Manifest.permission.ACCESS_FINE_LOCATION;
+    private CardView custompatterncard,wificonnectioncard;
+    private ImageView wificonnectionic;
+    private TextView connectionstatustxt,noofpatternscreatedtxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +55,19 @@ public class MainActivity extends AppCompatActivity {
         else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+        if (checkSelfPermission(FineLocation) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+        }
         Toolbar toolbar=findViewById(R.id.main_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         patternmainlayout=findViewById(R.id.pattern_main_layout);
         custompatterncard=findViewById(R.id.custompatterncard);
+        wificonnectioncard=findViewById(R.id.wificonnectioncard);
+        wificonnectionic=findViewById(R.id.wificonnectionic);
+        connectionstatustxt=findViewById(R.id.connectionstatustxt);
+        noofpatternscreatedtxt=findViewById(R.id.noofpatternscreatedtxt);
         patternmainlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +82,44 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        wificonnectioncard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Connect to The HopOn board").setIcon(R.drawable.ic_baseline_wifi_24).setMessage("Select the Hopon SSID and enter the password provided in the instruction manual in the next screen");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                        startActivity(intent);
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadData();
+        ConnectivityManager connManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        final WifiManager wifiManager = (WifiManager) getBaseContext().getSystemService(Context.WIFI_SERVICE);
+        final WifiInfo connectionInfo = wifiManager.getConnectionInfo();
+        if (connectionInfo != null) {
+            ssid = connectionInfo.getSSID();
+            ssid = ssid.substring(1, ssid.length() - 1);
+        }
+        //Toast.makeText(MainActivity.this,ssid,Toast.LENGTH_LONG).show();
+        if (ssid.equals("Hopon")) {
+            wificonnectionic.clearColorFilter();
+            connectionstatustxt.setText("Connected");
+        } else {
+            wificonnectionic.setColorFilter(Color.RED);
+            connectionstatustxt.setText("Disconnected");
+        }
+        noofpatternscreatedtxt.setText(String.valueOf(noofpatternscreated));
+        loctionstatusCheck();
     }
 
     @Override
@@ -87,11 +155,34 @@ public class MainActivity extends AppCompatActivity {
     public void saveData(){
         SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putBoolean(enable_dark_mode,darkmodetoggle);
+        editor.putBoolean("enabledarkmode",darkmodetoggle);
+        editor.putInt("noofpatternscreated",noofpatternscreated);
         editor.apply();
     }
     public void loadData(){
         SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-        darkmodetoggle=sharedPreferences.getBoolean(enable_dark_mode,false);
+        darkmodetoggle=sharedPreferences.getBoolean("enabledarkmode",false);
+        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",2);
     }
+    public void loctionstatusCheck() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Location seems to be disabled,It is needed for connection to the Hopon board")
+                    .setCancelable(false)
+                    .setPositiveButton("Enable", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, final int id) {
+                            startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, final int id) {
+                            dialog.cancel();
+                        }
+                    });
+            final AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
 }

@@ -58,6 +58,7 @@
             android:layout_height="80dp"
             android:background="@drawable/box"
             android:layout_width="wrap_content"
+            android:backgroundTintMode="multiply"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
         <Button
@@ -65,6 +66,7 @@
             android:layout_height="80dp"
             android:background="@drawable/box"
             android:layout_width="wrap_content"
+            android:backgroundTintMode="multiply"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
         <Button
@@ -72,6 +74,7 @@
             android:layout_height="80dp"
             android:background="@drawable/box"
             android:layout_width="wrap_content"
+            android:backgroundTintMode="multiply"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
         <Button
@@ -79,6 +82,7 @@
             android:layout_height="80dp"
             android:background="@drawable/box"
             android:layout_width="wrap_content"
+            android:backgroundTintMode="multiply"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
         <Button
@@ -86,6 +90,7 @@
             android:layout_height="80dp"
             android:background="@drawable/box"
             android:layout_width="wrap_content"
+            android:backgroundTintMode="multiply"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
         <Button
@@ -93,6 +98,7 @@
             android:layout_height="80dp"
             android:background="@drawable/box"
             android:layout_width="wrap_content"
+            android:backgroundTintMode="multiply"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
         <Button
@@ -100,12 +106,14 @@
             android:layout_height="80dp"
             android:background="@drawable/box"
             android:layout_width="wrap_content"
+            android:backgroundTintMode="multiply"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
         <Button
             android:id="@+id/usergenbtn5"
             android:layout_height="80dp"
             android:background="@drawable/box"
+            android:backgroundTintMode="multiply"
             android:layout_width="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
@@ -114,12 +122,14 @@
             android:layout_height="80dp"
             android:background="@drawable/box"
             android:layout_width="wrap_content"
+            android:backgroundTintMode="multiply"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
         <Button
             android:id="@+id/usergenbtn1"
             android:layout_height="80dp"
             android:background="@drawable/box"
+            android:backgroundTintMode="multiply"
             android:layout_width="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
@@ -127,6 +137,7 @@
             android:id="@+id/usergenbtn2"
             android:layout_height="80dp"
             android:background="@drawable/box"
+            android:backgroundTintMode="multiply"
             android:layout_width="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
@@ -134,6 +145,7 @@
             android:id="@+id/usergenbtn3"
             android:layout_height="80dp"
             android:background="@drawable/box"
+            android:backgroundTintMode="multiply"
             android:layout_width="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
