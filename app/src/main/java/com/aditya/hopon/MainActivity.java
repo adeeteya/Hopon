@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -18,30 +17,26 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.DialogTitle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-
-import com.google.android.gms.location.LocationRequest;
 
 public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS="sharedPrefs";
     private boolean darkmodetoggle;
     private int noofpatternscreated;
+    private DBManager dbManager;
     private LinearLayout patternmainlayout;
     private String ssid = null;
     final String FineLocation = Manifest.permission.ACCESS_FINE_LOCATION;
-    private CardView custompatterncard,wificonnectioncard;
+    private CardView custompatterncard,wificonnectioncard,communitycard;
     private ImageView wificonnectionic;
     private TextView connectionstatustxt,noofpatternscreatedtxt;
     @Override
@@ -59,11 +54,24 @@ public class MainActivity extends AppCompatActivity {
         {
             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 123);
         }
+        dbManager = new DBManager(this);
+        dbManager.open();
+        SharedPreferences sharedPreferences=getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+        boolean firstStart=sharedPreferences.getBoolean("firstStart",true);
+        if(firstStart){
+            dbManager.insert("Regular","122426182A2C",1);
+            dbManager.insert("Single Jumps","1214181C",2);
+            dbManager.insert("Multiplex","212315172A2C",1);
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putBoolean("firstStart",false);
+            editor.apply();
+        }
         Toolbar toolbar=findViewById(R.id.main_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         patternmainlayout=findViewById(R.id.pattern_main_layout);
         custompatterncard=findViewById(R.id.custompatterncard);
+        communitycard=findViewById(R.id.communitycard);
         wificonnectioncard=findViewById(R.id.wificonnectioncard);
         wificonnectionic=findViewById(R.id.wificonnectionic);
         connectionstatustxt=findViewById(R.id.connectionstatustxt);
@@ -72,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,patternsActivity.class);
+                startActivity(intent);
+            }
+        });
+        communitycard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, communityActivity.class);
                 startActivity(intent);
             }
         });
@@ -162,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     public void loadData(){
         SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         darkmodetoggle=sharedPreferences.getBoolean("enabledarkmode",false);
-        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",2);
+        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",3);
     }
     public void loctionstatusCheck() {
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

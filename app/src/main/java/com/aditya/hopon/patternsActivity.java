@@ -54,18 +54,8 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
         toolbartitle.setText("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        SharedPreferences sharedPreferences=getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-        boolean firstStart=sharedPreferences.getBoolean("firstStart",true);
         dbManager = new DBManager(this);
         dbManager.open();
-        if(firstStart){
-            dbManager.insert("Regular","122426182A2C",1);
-            dbManager.insert("Single Jumps","1214181C",2);
-            dbManager.insert("Multiplex","212315172A2C",1);
-            SharedPreferences.Editor editor=sharedPreferences.edit();
-            editor.putBoolean("firstStart",false);
-            editor.apply();
-        }
         cursor = dbManager.fetch();
         listView = (ListView) findViewById(R.id.patterns_list);
         listView.setEmptyView(findViewById(R.id.emptytextpattern));
@@ -150,8 +140,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
                 //button handling starts here
                 Button patternplaybutton=(Button) view.findViewById(R.id.patternplaybutton);
                 Button patterndeletebutton=(Button)view.findViewById(R.id.patterndeletebutton);
-                Button patternmodifybutton=(Button)view.findViewById(R.id.patternmodifybutton);
-                if(id.equals("1")){ patterndeletebutton.setEnabled(false);patternmodifybutton.setEnabled(false);}
+                if(id.equals("1")){ patterndeletebutton.setEnabled(false);}
                 patterndeletebutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -163,6 +152,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
                 //hidden layout handling
                 LinearLayout hiddenpatternlayout=(LinearLayout)view.findViewById(R.id.hiddenpatternlayout);
                 CardView patterncardview=(CardView)view.findViewById(R.id.patterncardview);
+                //none of the patterns are opened
                 if(opened==0 && hiddenpatternlayout.getVisibility()==View.GONE){
                     v=view;
                     if(patternmode.getText().toString().equals("1"))patternmode.setText("Normal Mode");
@@ -171,6 +161,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
                     TransitionManager.beginDelayedTransition(patterncardview, new AutoTransition());
                     hiddenpatternlayout.setVisibility(View.VISIBLE);opened=1;
                 }
+                //this is the only pattern opened
                 else if(opened==1 && hiddenpatternlayout.getVisibility()==View.VISIBLE){
                     if(patternmode.getText().toString().equals("Normal Mode")){patternmode.setText("1");}
                     else{patternmode.setText("2");}
@@ -178,6 +169,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
                     TransitionManager.beginDelayedTransition(patterncardview, new AutoTransition());
                     hiddenpatternlayout.setVisibility(View.GONE);opened=0;
                 }
+                //some other pattern is already open
                 else if(opened==1 && hiddenpatternlayout.getVisibility()==View.GONE){
                     TextView temp=(TextView)v.findViewById(R.id.patternmode);
                     if(temp.getText().toString().equals("Normal Mode")){temp.setText("1");}
@@ -214,7 +206,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
         listView.setAdapter(adapter);
         int noofpatternscreated;
         SharedPreferences sharedPreferences=getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",2);
+        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",3);
         noofpatternscreated--;
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putInt("noofpatternscreated",noofpatternscreated);

@@ -1,14 +1,18 @@
 package com.aditya.hopon;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -21,10 +25,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class UserGenActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private EditText nameinput;
     private int gamemodechoice,noofpatternscreated;
     private DBManager dbManager;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
     private String sequence="",name="";
     private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnA,btnB,btnC,submit;
     private int s1=0,s2=0,s3=0,s4=0,s5=0,s6=0,s7=0,s8=0,s9=0,sA=0,sB=0,sC=0,twotileno=0;
@@ -48,7 +62,8 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
         dbManager = new DBManager(this);
         dbManager.open();
         SharedPreferences sharedPreferences=getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",2);
+        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",3);
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Patterns");
         nameinput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -329,12 +344,44 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
                 }
                 else{
                     dbManager.insert(name, sequence, gamemodechoice);
-                    noofpatternscreated++;
-                    SharedPreferences.Editor editor=sharedPreferences.edit();
-                    editor.putInt("noofpatternscreated",noofpatternscreated);
-                    editor.apply();
-                    Toast.makeText(UserGenActivity.this, "Custom Pattern Added", Toast.LENGTH_SHORT).show();
-                    finish();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UserGenActivity.this);
+                    builder.setTitle("Upload to Community").setIcon(R.drawable.ic_baseline_cloud_upload_24).setMessage("Do you want to Upload this custom pattern to the community?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //check firebase authentication
+                            firebaseAuth= FirebaseAuth.getInstance();
+                            FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+                            //write to firebase
+                            if(firebaseUser!=null) {
+                                String pid=databaseReference.push().getKey();
+                                Patterns pattern = new Patterns(gamemodechoice, name, sequence, firebaseUser.getDisplayName(),firebaseUser.getUid(),pid);
+                                databaseReference.child(pid).setValue(pattern);
+                                //databaseReference.child(String.valueOf(maxId+1)).setValue(pattern);
+                                Toast.makeText(UserGenActivity.this, "Custom Pattern Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(UserGenActivity.this, "Custom Pattern Added but couldn't upload to Community", Toast.LENGTH_SHORT).show();
+                            }
+                            noofpatternscreated++;
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putInt("noofpatternscreated", noofpatternscreated);
+                            editor.apply();
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            noofpatternscreated++;
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
+                            editor.putInt("noofpatternscreated",noofpatternscreated);
+                            editor.apply();
+                            Toast.makeText(UserGenActivity.this, "Custom Pattern Added", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
+                    builder.show();
                 }
             }
         });

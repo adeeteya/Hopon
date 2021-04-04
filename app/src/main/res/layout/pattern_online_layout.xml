@@ -44,6 +44,16 @@
                     android:layout_height="0dp"
                     android:visibility="invisible"/>
                 <TextView
+                    android:id="@+id/patternuid"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="invisible"/>
+                <TextView
+                    android:id="@+id/patternpid"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="invisible"/>
+                <TextView
                     android:id="@+id/patternname"
                     android:layout_width="wrap_content"
                     android:layout_centerInParent="true"
@@ -56,14 +66,12 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="20dp"
-
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
                 <TextView
                     android:id="@+id/patternmode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
                     android:layout_marginEnd="10dp"
                     android:layout_below="@id/patternmodeic"
                     android:layout_alignParentRight="true" />
@@ -72,7 +80,6 @@
                 android:id="@+id/hiddenpatternlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +169,7 @@
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:layout_gravity="center"
                         android:src="@drawable/box"/>
                     <ImageView
@@ -171,7 +178,7 @@
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:layout_gravity="center"
                         android:src="@drawable/box"/>
                     <ImageView
@@ -180,33 +187,47 @@
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:layout_gravity="center"
                         android:src="@drawable/box" />
                 </GridLayout>
                 <LinearLayout
+                    android:id="@+id/hiddendownloadlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="2"
+                    android:visibility="gone"
+                    android:weightSum="3"
                     android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/patterndeletebutton"
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/uniformroundedextracondensedblack"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:gravity="center"
+                        android:text="Created by"
+                        android:textSize="14sp"
+                        android:layout_weight="0.5"/>
+                    <TextView
+                        android:id="@+id/authornametxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/uniformroundedextracondensedblack"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:text="Unknown"
+                        android:textSize="14sp"
+                        android:layout_weight="2"/>
+                    <Button
+                        android:id="@+id/patterndownloadbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="0.5"
                         android:focusable="false"
                         android:layout_height="wrap_content"
-                        android:text="@string/delete"
+                        android:text="Download"
                         android:textAllCaps="false"
-                        android:drawableStart="@drawable/ic_baseline_delete_24"/>
-                    <Button
-                        android:id="@+id/patternplaybutton"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:focusable="false"
-                        android:layout_height="wrap_content"
-                        android:text="@string/play"
-                        android:textAllCaps="false"
-                        android:drawableLeft="@drawable/ic_baseline_play_arrow_24"/>
+                        android:drawableLeft="@drawable/ic_baseline_download_24"/>
                 </LinearLayout>
 
             </LinearLayout>
