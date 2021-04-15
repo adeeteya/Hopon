@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aditya.hopon">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,14 +14,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:theme="@style/Theme.HopOn">
-        <activity android:name=".communityActivity"></activity>
-        <activity android:name=".patternsActivity" />
-        <activity android:name=".UserGenActivity" />
+        <activity
+            android:name=".communityActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".patternsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".UserGenActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

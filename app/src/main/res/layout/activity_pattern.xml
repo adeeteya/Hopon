@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativelistlayout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorOnPrimary"
     tools:context=".patternsActivity">
+
     <include
-        android:id="@+id/pattern_toolbar"
+        android:id="@id/toolbar"
         layout="@layout/toolbar" />
+
     <ListView
-        android:layout_below="@+id/pattern_toolbar"
+        android:layout_below="@+id/toolbar"
         android:id="@+id/patterns_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
         android:dividerHeight="1dp"/>
+
     <TextView
         android:id="@+id/emptytextpattern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="No Patterns"/>
+        android:text="@string/no_patterns" />
 </RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_mode1">प्रतिरूप</string>
+    <string name="play">खेल</string>
+    <string name="delete">हटाना</string>
+    <string name="download">डाउनलोड</string>
+    <string name="unknown">अनजान</string>
+    <string name="normalmode">सामान्य स्थिति</string>
+    <string name="timedmode">समयबद्ध विधा</string>
+    <string name="disconnected">वियोजित</string>
+    <string name="created_by">द्वारा निर्मित</string>
+    <string name="st_place">जगह</string>
+    <string name="choose_from_the_different_patterns">विभिन्न पैटर्न से चुनें</string>
+    <string name="patterns">प्रतिरूप</string>
+    <string name="tap_to_connect">कनेक्ट करने के लिए टैप करें</string>
+    <string name="connected">जुड़े हुए</string>
+    <string name="compete_with_friends">दोस्तों के साथ मुकाबला करें</string>
+    <string name="connection_status">संपर्क स्थिति</string>
+    <string name="leaderboard">" श्रेणी"</string>
+    <string name="create_a_new_pattern">एक नया पैटर्न बनाएं</string>
+    <string name="create_pattern">पैटर्न बनाएं</string>
+    <string name="community">समुदाय</string>
+    <string name="patterns_from_other_users">अन्य उपयोगकर्ताओं से पैटर्न</string>
+    <string name="no_patterns">कोई पैटर्न नहीं</string>
+    <string name="enter_the_name_of_the_pattern">पैटर्न का नाम दर्ज करें</string>
+    <string name="game_mode">खेल मोड</string>
+    <string name="add_this_pattern">यह पैटर्न जोड़ें</string>
+    <string name="enable_dark_mode">डार्क मोड सक्षम करें</string>
+    <string name="uploadtocommunity">समुदाय को अपलोड करें</string>
+    <string name="wifi_network">होपोन बोर्ड</string>
+    <string name="search">खोज</string>
+    <string name="app_name">कूद पर</string>
+</resources>

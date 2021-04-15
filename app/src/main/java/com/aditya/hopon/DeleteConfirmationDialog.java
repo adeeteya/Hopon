@@ -3,7 +3,6 @@ package com.aditya.hopon;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,18 +15,10 @@ public class DeleteConfirmationDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-        builder.setTitle("Delete Pattern").setMessage("Are you sure you want to Delete it?").setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        builder.setTitle("Delete Pattern").setMessage("Are you sure you want to Delete it?").setNegativeButton("Cancel", (dialogInterface, i) -> {
 
-            }
         })
-        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                listener.onYesClicked();
-            }
-        });
+                .setPositiveButton("Yes", (dialogInterface, i) -> listener.onYesClicked());
         return builder.create();
     }
     public interface DeleteConfirmationDialogListener {

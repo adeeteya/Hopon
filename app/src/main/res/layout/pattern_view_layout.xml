@@ -8,8 +8,8 @@
         android:id="@+id/patterncardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:background="?attr/colorOnSecondary"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
@@ -33,8 +33,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
-                    android:gravity="center"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toStartOf="@id/patternname"
+                    android:gravity="center_vertical"
                     android:textSize="20sp"
                     android:fontFamily="@font/uniformroundedextracondensedblack"
                     android:textColor="?android:attr/textColorPrimary" />
@@ -51,22 +52,29 @@
                     android:textStyle="bold"
                     android:textColor="?android:attr/textColorPrimary"
                     android:layout_height="wrap_content" />
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/patternmodeic"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginTop="20dp"
-
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
+
                 <TextView
-                    android:id="@+id/patternmode"
+                    android:id="@id/patternmode"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/patternmodetxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:layout_marginEnd="10dp"
                     android:layout_below="@id/patternmodeic"
-                    android:layout_alignParentRight="true" />
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
             <LinearLayout
                 android:id="@+id/hiddenpatternlayout"
@@ -91,6 +99,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/TileA"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgridB"
@@ -99,6 +108,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/TileB"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgridC"
@@ -107,6 +117,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/TileC"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgrid7"
@@ -115,6 +126,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile7"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgrid8"
@@ -123,6 +135,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile8"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgrid9"
@@ -131,6 +144,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile9"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgrid4"
@@ -139,6 +153,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile4"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgrid5"
@@ -147,6 +162,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile5"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgrid6"
@@ -155,6 +171,7 @@
                         android:layout_columnWeight="1"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile6"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgrid1"
@@ -164,6 +181,7 @@
                         android:layout_height="40dp"
                         android:layout_marginBottom="5dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile1"
                         android:src="@drawable/box"/>
                     <ImageView
                         android:id="@+id/pattgrid2"
@@ -173,7 +191,9 @@
                         android:layout_height="40dp"
                         android:layout_marginBottom="5dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile2"
                         android:src="@drawable/box"/>
+
                     <ImageView
                         android:id="@+id/pattgrid3"
                         android:layout_width="40dp"
@@ -182,6 +202,7 @@
                         android:layout_height="40dp"
                         android:layout_marginBottom="5dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/Tile3"
                         android:src="@drawable/box" />
                 </GridLayout>
                 <LinearLayout
@@ -189,6 +210,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="2"
                     android:orientation="horizontal">
+
                     <Button
                         android:id="@+id/patterndeletebutton"
                         android:layout_width="wrap_content"
@@ -196,8 +218,12 @@
                         android:focusable="false"
                         android:layout_height="wrap_content"
                         android:text="@string/delete"
+                        android:backgroundTint="#FF5252"
+                        android:drawableStart="@drawable/ic_baseline_delete_24"
                         android:textAllCaps="false"
-                        android:drawableStart="@drawable/ic_baseline_delete_24"/>
+                        android:drawableTint="@color/white"
+                        android:textColor="@color/white" />
+
                     <Button
                         android:id="@+id/patternplaybutton"
                         android:layout_width="wrap_content"
@@ -205,8 +231,10 @@
                         android:focusable="false"
                         android:layout_height="wrap_content"
                         android:text="@string/play"
+                        android:backgroundTint="#4caf50"
                         android:textAllCaps="false"
-                        android:drawableLeft="@drawable/ic_baseline_play_arrow_24"/>
+                        android:drawableStart="@drawable/ic_baseline_play_arrow_24"
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
             </LinearLayout>

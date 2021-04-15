@@ -12,36 +12,41 @@ import androidx.cursoradapter.widget.SimpleCursorAdapter;
 
 public class Custom_Adapter extends SimpleCursorAdapter {
 
-    private Context mContext;
+    private final Context mContext;
     private Context appContext;
-    private int layout;
-    private Cursor cr;
+    private final int layout;
+    private final Cursor cr;
     private final LayoutInflater inflater;
 
-    public Custom_Adapter(Context context,int layout, Cursor c,String[] from,int[] to,int flags) {
-        super(context,layout,c,from,to,0);
-        this.layout=layout;
+    public Custom_Adapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
+        super(context, layout, c, from, to, 0);
+        this.layout = layout;
         this.mContext = context;
-        this.inflater=LayoutInflater.from(context);
-        this.cr=c;
+        this.inflater = LayoutInflater.from(context);
+        this.cr = c;
     }
 
     @Override
-    public View newView (Context context, Cursor cursor, ViewGroup parent) {
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return inflater.inflate(layout, null);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         super.bindView(view, context, cursor);
-        TextView patternid=(TextView)view.findViewById(R.id.patternid);
-        TextView patternsequence=(TextView)view.findViewById(R.id.patternsequence);
-        TextView patternname=(TextView)view.findViewById(R.id.patternname);
-        TextView patternmode=(TextView)view.findViewById(R.id.patternmode);
-        ImageView pattternmodeic=(ImageView)view.findViewById(R.id.patternmodeic);
-        if(patternmode.getText().toString().equals("1")){pattternmodeic.setImageResource(R.drawable.ic_baseline_videogame_asset_24);}
-        else {pattternmodeic.setImageResource(R.drawable.ic_baseline_timer_24);}
-
+        TextView patternid = view.findViewById(R.id.patternid);
+        TextView patternsequence = view.findViewById(R.id.patternsequence);
+        TextView patternname = view.findViewById(R.id.patternname);
+        TextView patternmode = view.findViewById(R.id.patternmode);
+        TextView patternmodetxt = view.findViewById(R.id.patternmodetxt);
+        ImageView pattternmodeic = view.findViewById(R.id.patternmodeic);
+        if (patternmode.getText().toString().equals("1")) {
+            pattternmodeic.setImageResource(R.drawable.ic_baseline_videogame_asset_24);
+            patternmodetxt.setText(R.string.normalmode);
+        } else {
+            pattternmodeic.setImageResource(R.drawable.ic_baseline_timer_24);
+            patternmodetxt.setText(R.string.timedmode);
+        }
     }
 
 }

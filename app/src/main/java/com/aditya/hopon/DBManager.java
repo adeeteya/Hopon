@@ -10,7 +10,7 @@ public class DBManager {
 
     private DatabaseHelper dbHelper;
 
-    private Context context;
+    private final Context context;
 
     private SQLiteDatabase database;
 
@@ -37,7 +37,7 @@ public class DBManager {
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { DatabaseHelper._ID, DatabaseHelper.NAME, DatabaseHelper.SEQUENCE,DatabaseHelper.MODE };
+        String[] columns = new String[]{DatabaseHelper._ID, DatabaseHelper.NAME, DatabaseHelper.SEQUENCE, DatabaseHelper.MODE};
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -45,13 +45,17 @@ public class DBManager {
         return cursor;
     }
 
-    public int update(long _id, String name, String desc,int mode) {
+    public Cursor search(String name) {
+        String[] columns = new String[]{DatabaseHelper._ID, DatabaseHelper.NAME, DatabaseHelper.SEQUENCE, DatabaseHelper.MODE};
+        return database.rawQuery("SELECT * from Patterns where name like '" + name + "%';", null);
+    }
+
+    public int update(long _id, String name, String sequence, int mode) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.NAME, name);
-        contentValues.put(DatabaseHelper.SEQUENCE, desc);
-        contentValues.put(DatabaseHelper.MODE,mode);
-        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
-        return i;
+        contentValues.put(DatabaseHelper.SEQUENCE, sequence);
+        contentValues.put(DatabaseHelper.MODE, mode);
+        return database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
     }
 
     public void delete(long _id) {

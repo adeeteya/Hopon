@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorOnPrimary"
     tools:context=".MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <include
-            android:id="@+id/main_toolbar"
+            android:id="@+id/toolbar"
             layout="@layout/toolbar" />
         <GridLayout
             android:layout_width="match_parent"
@@ -32,6 +31,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardElevation="8dp"
                 app:cardCornerRadius="8dp">
+
                 <LinearLayout
                     android:id="@+id/pattern_main_layout"
                     android:layout_width="match_parent"
@@ -39,33 +39,45 @@
                     android:orientation="vertical"
                     android:clickable="true"
                     android:background="@drawable/gradient_1"
+                    android:focusable="true"
                     android:weightSum="2">
-                    <LinearLayout
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center"
-                        android:layout_weight="1.7"
-                        android:weightSum="3">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.7">
+
                         <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgpattern2"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@drawable/grid_2"/>
+                            android:src="@drawable/grid_2"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/imgpattern1"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgpattern1"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@drawable/grid_1"/>
+                            android:src="@drawable/grid_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/imgpattern2"
+                            app:layout_constraintRight_toLeftOf="@id/imgpattern3"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgpattern3"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@drawable/grid_3"/>
-                    </LinearLayout>
+                            android:src="@drawable/grid_3"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/imgpattern1"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -75,14 +87,14 @@
                         android:text="@string/game_mode1"
                         android:textStyle="bold"
                         android:textSize="24sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
                         android:layout_gravity="center"
                         android:gravity="bottom"
-                        android:text="Choose from the different patterns"
+                        android:text="@string/choose_from_the_different_patterns"
                         android:textSize="12sp"
                         android:textColor="#B3FFFFFF"/>
                 </LinearLayout>
@@ -105,37 +117,39 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardElevation="8dp"
+                    android:focusable="true"
                     app:cardCornerRadius="8dp">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="?attr/colorOnSecondary"
                         android:minHeight="220dp">
+
                         <TextView
                             android:id="@+id/gamemode2text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textStyle="bold"
-                            android:text="Community"
+                            android:layout_marginStart="05dp"
                             android:textColor="?android:attr/textColorPrimary"
-                            android:textSize="16dp"
-                            android:layout_marginLeft="05dp"
+                            android:text="@string/community"
+                            android:textSize="16sp"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                         <TextView
                             android:id="@+id/gamemode2desctext"
                             android:layout_below="@+id/gamemode2text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Patterns from other users"
-                            android:textSize="10dp"
-                            android:layout_marginLeft="05dp"
+                            android:layout_marginStart="05dp"
+                            android:text="@string/patterns_from_other_users"
+                            android:textSize="12sp"
                             android:textColor="?android:attr/textColorSecondary"
                             app:layout_constraintTop_toBottomOf="@+id/gamemode2text"
-                            app:layout_constraintLeft_toLeftOf="parent"/>
+                            app:layout_constraintLeft_toLeftOf="parent" />
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/gamemode2ic"
                             android:layout_width="80dp"
                             android:layout_marginTop="10dp"
                             android:src="@drawable/ic_baseline_groups_24"
@@ -144,7 +158,7 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"/>
                         <TextView
-                            android:id="@+id/besttimetxt"
+                            android:id="@+id/onlinepatterncounttxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="38sp"
@@ -152,20 +166,21 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:fontFamily="@font/uniformroundedextracondensedblack"
                             android:text="100+"
-                            android:layout_marginLeft="05dp"
+                            android:layout_marginStart="05dp"
                             android:layout_marginBottom="5dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"/>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="patterns"
+                            android:layout_marginStart="4dp"
                             android:textSize="14sp"
                             android:textColor="?android:attr/textColorSecondary"
                             android:layout_marginBottom="10dp"
-                            android:layout_marginLeft="4dp"
-                            app:layout_constraintLeft_toRightOf="@id/besttimetxt"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            android:text="@string/patterns"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/onlinepatterncounttxt" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -179,37 +194,39 @@
                     android:clickable="true"
                     android:layout_marginBottom="16dp"
                     app:cardElevation="8dp"
+                    android:focusable="true"
                     app:cardCornerRadius="8dp">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="?attr/colorOnSecondary"
                         android:minHeight="220dp">
+
                         <TextView
                             android:id="@+id/gamemode3text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textStyle="bold"
-                            android:text="Create Pattern"
-                            android:textSize="16dp"
+                            android:layout_marginStart="05dp"
+                            android:text="@string/create_pattern"
                             android:textColor="?android:attr/textColorPrimary"
-                            android:layout_marginLeft="05dp"
+                            android:textSize="16sp"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                         <TextView
                             android:id="@+id/gamemode3desctext"
                             android:layout_below="@+id/gamemode3text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Create a new pattern"
-                            android:textSize="12dp"
-                            android:layout_marginLeft="05dp"
+                            android:layout_marginStart="05dp"
+                            android:text="@string/create_a_new_pattern"
+                            android:textSize="12sp"
                             android:textColor="?android:attr/textColorSecondary"
                             app:layout_constraintTop_toBottomOf="@+id/gamemode3text"
-                            app:layout_constraintLeft_toLeftOf="parent"/>
+                            app:layout_constraintLeft_toLeftOf="parent" />
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/gamemode3ic"
                             android:layout_width="80dp"
                             android:layout_marginTop="20dp"
                             android:src="@drawable/ic_baseline_add_circle_24"
@@ -225,18 +242,18 @@
                             android:layout_marginTop="10dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:fontFamily="@font/uniformroundedextracondensedblack"
-                            android:layout_marginLeft="05dp"
+                            android:layout_marginStart="05dp"
                             android:layout_marginBottom="5dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="patterns"
+                            android:layout_marginStart="4dp"
                             android:textSize="14sp"
                             android:textColor="?android:attr/textColorSecondary"
                             android:layout_marginBottom="10dp"
-                            android:layout_marginLeft="4dp"
+                            android:text="@string/patterns"
                             app:layout_constraintLeft_toRightOf="@id/noofpatternscreatedtxt"
                             app:layout_constraintBottom_toBottomOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -259,37 +276,39 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardElevation="8dp"
+                    android:focusable="true"
                     app:cardCornerRadius="8dp">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="?attr/colorOnSecondary"
                         android:minHeight="220dp">
+
                         <TextView
                             android:id="@+id/leaderboardtext"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textStyle="bold"
-                            android:text="Leaderboard"
+                            android:layout_marginStart="05dp"
                             android:textColor="?android:attr/textColorPrimary"
-                            android:textSize="16dp"
-                            android:layout_marginLeft="05dp"
+                            android:text="@string/leaderboard"
+                            android:textSize="16sp"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                         <TextView
                             android:id="@+id/leaderboarddesctext"
                             android:layout_below="@+id/leaderboardtext"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Compete with Friends"
-                            android:textSize="12dp"
-                            android:layout_marginLeft="05dp"
+                            android:layout_marginStart="05dp"
+                            android:text="@string/compete_with_friends"
+                            android:textSize="12sp"
                             android:textColor="?android:attr/textColorSecondary"
                             app:layout_constraintTop_toBottomOf="@+id/leaderboardtext"
-                            app:layout_constraintLeft_toLeftOf="parent"/>
+                            app:layout_constraintLeft_toLeftOf="parent" />
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/leaderboardic"
                             android:layout_width="80dp"
                             android:layout_marginTop="20dp"
                             android:src="@drawable/trophy"
@@ -306,18 +325,18 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:fontFamily="@font/uniformroundedextracondensedblack"
                             android:text="1"
-                            android:layout_marginLeft="05dp"
+                            android:layout_marginStart="05dp"
                             android:layout_marginBottom="5dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="st place"
+                            android:layout_marginStart="4dp"
                             android:textSize="14sp"
                             android:textColor="?android:attr/textColorSecondary"
                             android:layout_marginBottom="10dp"
-                            android:layout_marginLeft="4dp"
+                            android:text="@string/st_place"
                             app:layout_constraintLeft_toRightOf="@id/leaderboardpostxt"
                             app:layout_constraintBottom_toBottomOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -333,22 +352,24 @@
                     android:clickable="true"
                     android:layout_marginBottom="16dp"
                     app:cardElevation="8dp"
+                    android:focusable="true"
                     app:cardCornerRadius="8dp">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="?attr/colorOnSecondary"
                         android:minHeight="220dp">
+
                         <TextView
                             android:id="@+id/wificonnectiontext"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textStyle="bold"
-                            android:text="Connection Status"
+                            android:layout_marginStart="05dp"
                             android:textColor="?android:attr/textColorPrimary"
-                            android:textSize="16dp"
-                            android:layout_marginLeft="05dp"
+                            android:text="@string/connection_status"
+                            android:textSize="16sp"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
                         <TextView
@@ -356,9 +377,9 @@
                             android:layout_below="@+id/wificonnectiontext"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tap to Connect"
+                            android:layout_marginStart="05dp"
                             android:textSize="12sp"
-                            android:layout_marginLeft="05dp"
+                            android:text="@string/tap_to_connect"
                             android:textColor="?android:attr/textColorSecondary"
                             app:layout_constraintTop_toBottomOf="@+id/wificonnectiontext"
                             app:layout_constraintLeft_toLeftOf="parent"/>
@@ -371,6 +392,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/wificonnectiondesctext"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"/>
+
                         <TextView
                             android:id="@+id/connectionstatustxt"
                             android:layout_width="wrap_content"
@@ -379,12 +401,11 @@
                             android:layout_marginTop="10dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:fontFamily="@font/uniformroundedextracondensedblack"
-                            android:text="Connected"
-                            android:layout_marginLeft="05dp"
+                            android:layout_marginStart="05dp"
+                            android:text="@string/connected"
                             android:layout_marginBottom="5dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintLeft_toLeftOf="parent"/>
-                        t"/>
+                            app:layout_constraintLeft_toLeftOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
