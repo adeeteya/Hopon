@@ -46,17 +46,18 @@ public class DBManager {
     }
 
     public Cursor search(String name) {
-        String[] columns = new String[]{DatabaseHelper._ID, DatabaseHelper.NAME, DatabaseHelper.SEQUENCE, DatabaseHelper.MODE};
         return database.rawQuery("SELECT * from Patterns where name like '" + name + "%';", null);
     }
 
-    public int update(long _id, String name, String sequence, int mode) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.NAME, name);
-        contentValues.put(DatabaseHelper.SEQUENCE, sequence);
-        contentValues.put(DatabaseHelper.MODE, mode);
-        return database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
-    }
+// --Commented out by Inspection START (16/04/2021 7:50 AM):
+//    public int update(long _id, String name, String sequence, int mode) {
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(DatabaseHelper.NAME, name);
+//        contentValues.put(DatabaseHelper.SEQUENCE, sequence);
+//        contentValues.put(DatabaseHelper.MODE, mode);
+//        return database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
+//    }
+// --Commented out by Inspection STOP (16/04/2021 7:50 AM)
 
     public void delete(long _id) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._ID + "=" + _id, null);

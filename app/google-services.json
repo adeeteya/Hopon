@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "233640760574",
+    "firebase_url": "https://hopon-14dc7-default-rtdb.firebaseio.com",
+    "project_id": "hopon-14dc7",
+    "storage_bucket": "hopon-14dc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233640760574:android:2e84741892f8c7cba041af",
+        "android_client_info": {
+          "package_name": "com.aditya.hopon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233640760574-9gs5snrb0mp1cq5qgf0tr9clpiimn6p1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aditya.hopon",
+            "certificate_hash": "4ace5e4f3616d06c87e7625916f6f178bca23fc2"
+          }
+        },
+        {
+          "client_id": "233640760574-d18montuoivkeukg6umbfmfsh0h3rmkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLKxR0d4FSgnEsLsZxAiMV7DQ85zfCtSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233640760574-d18montuoivkeukg6umbfmfsh0h3rmkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

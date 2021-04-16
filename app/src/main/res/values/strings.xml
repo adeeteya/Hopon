@@ -13,8 +13,6 @@
         <item>Normal Mode</item>
         <item>Timed Mode</item>
     </string-array>
-    <string name="Tile1" translatable="false">1</string>
-    <string name="Tile2" translatable="false">2</string>
     <string name="Tile3" translatable="false">3</string>
     <string name="Tile4" translatable="false">4</string>
     <string name="Tile5" translatable="false">5</string>
@@ -25,6 +23,8 @@
     <string name="TileA" translatable="false">A</string>
     <string name="TileB" translatable="false">B</string>
     <string name="TileC" translatable="false">C</string>
+    <string name="TileD" translatable="false">D</string>
+    <string name="TileE" translatable="false">E</string>
     <string name="created_by">Created by</string>
     <string name="st_place">st place</string>
     <string name="wifi_network">HopOn Board</string>

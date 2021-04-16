@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
         if (firstStart) {
-            dbManager.insert("Regular", "122426182A2C", 1);
-            dbManager.insert("Single Jumps", "1214181C", 2);
-            dbManager.insert("Multiplex", "212315172A2C", 1);
+            dbManager.insert("Regular", "1426281A2C2E", 1);
+            dbManager.insert("Single Jumps", "14161A1E", 2);
+            dbManager.insert("Multiplex", "232517192C2E", 1);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("firstStart", false);
             editor.apply();

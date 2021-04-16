@@ -35,9 +35,9 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private String sequence = "", name = "";
-    private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnA, btnB, btnC;
-    private CheckedTextView uploadcommmunitycheck;
-    private int s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, s8 = 0, s9 = 0, sA = 0, sB = 0, sC = 0, twotileno = 0;
+    private Button btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnA, btnB, btnC, btnD, btnE;
+    private CheckedTextView uploadcommunitycheck;
+    private int s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, s8 = 0, s9 = 0, sA = 0, sB = 0, sC = 0, sD = 0, sE = 0, twotileno = 0, pno = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +65,8 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
         Resources.Theme theme = UserGenActivity.this.getTheme();
         theme.resolveAttribute(R.attr.colorOnSecondary, typedValue, true);
         @ColorInt int color = typedValue.data;
-        uploadcommmunitycheck = findViewById(R.id.uploadcommunitycheck);
-        uploadcommmunitycheck.setOnClickListener(view -> uploadcommmunitycheck.setChecked(!uploadcommmunitycheck.isChecked()));
+        uploadcommunitycheck = findViewById(R.id.uploadcommunitycheck);
+        uploadcommunitycheck.setOnClickListener(view -> uploadcommunitycheck.setChecked(!uploadcommunitycheck.isChecked()));
         nameinput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -81,56 +81,24 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             public void afterTextChanged(Editable editable) {
             }
         });
-        btn1 = findViewById(R.id.usergenbtn1);
-        btn1.setOnClickListener(view -> {
-            if (s1 == 0) {
-                sequence += "11";
-                btn1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
-                s1++;
-            } else if (s1 == 1) {
-                sequence = sequence.replaceFirst("11", "21");
-                btn1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
-                s1++;
-                twotileno++;
-            } else {
-                sequence = sequence.replaceFirst("21", "");
-                btn1.setBackgroundTintList(ColorStateList.valueOf(color));
-                s1 = 0;
-                twotileno--;
-            }
-        });
-        btn2 = findViewById(R.id.usergenbtn2);
-        btn2.setOnClickListener(view -> {
-            if (s2 == 0) {
-                sequence += "12";
-                btn2.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
-                s2++;
-            } else if (s2 == 1) {
-                sequence = sequence.replaceFirst("12", "22");
-                btn2.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
-                s2++;
-                twotileno++;
-            } else {
-                sequence = sequence.replaceFirst("22", "");
-                btn2.setBackgroundTintList(ColorStateList.valueOf(color));
-                s2 = 0;
-                twotileno--;
-            }
-        });
+        //pattern sequence creation starts here
         btn3 = findViewById(R.id.usergenbtn3);
         btn3.setOnClickListener(view -> {
             if (s3 == 0) {
                 sequence += "13";
                 btn3.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btn3.setText(String.valueOf(++pno));
                 s3++;
             } else if (s3 == 1) {
                 sequence = sequence.replaceFirst("13", "23");
                 btn3.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 s3++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("23", "");
                 btn3.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 s3 = 0;
                 twotileno--;
             }
@@ -140,15 +108,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (s4 == 0) {
                 sequence += "14";
                 btn4.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btn4.setText(String.valueOf(++pno));
                 s4++;
             } else if (s4 == 1) {
                 sequence = sequence.replaceFirst("14", "24");
                 btn4.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 s4++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("24", "");
                 btn4.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 s4 = 0;
                 twotileno--;
             }
@@ -158,15 +129,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (s5 == 0) {
                 sequence += "15";
                 btn5.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btn5.setText(String.valueOf(++pno));
                 s5++;
             } else if (s5 == 1) {
                 sequence = sequence.replaceFirst("15", "25");
                 btn5.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 s5++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("25", "");
                 btn5.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 s5 = 0;
                 twotileno--;
             }
@@ -176,15 +150,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (s6 == 0) {
                 sequence += "16";
                 btn6.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btn6.setText(String.valueOf(++pno));
                 s6++;
             } else if (s6 == 1) {
                 sequence = sequence.replaceFirst("16", "26");
                 btn6.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 s6++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("26", "");
                 btn6.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 s6 = 0;
                 twotileno--;
             }
@@ -194,15 +171,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (s7 == 0) {
                 sequence += "17";
                 btn7.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btn7.setText(String.valueOf(++pno));
                 s7++;
             } else if (s7 == 1) {
                 sequence = sequence.replaceFirst("17", "27");
                 btn7.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 s7++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("27", "");
                 btn7.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 s7 = 0;
                 twotileno--;
             }
@@ -212,15 +192,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (s8 == 0) {
                 sequence += "18";
                 btn8.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btn8.setText(String.valueOf(++pno));
                 s8++;
             } else if (s8 == 1) {
                 sequence = sequence.replaceFirst("18", "28");
                 btn8.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 s8++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("28", "");
                 btn8.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 s8 = 0;
                 twotileno--;
             }
@@ -230,15 +213,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (s9 == 0) {
                 sequence += "19";
                 btn9.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btn9.setText(String.valueOf(++pno));
                 s9++;
             } else if (s9 == 1) {
                 sequence = sequence.replaceFirst("19", "29");
                 btn9.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 s9++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("29", "");
                 btn9.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 s9 = 0;
                 twotileno--;
             }
@@ -248,15 +234,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (sA == 0) {
                 sequence += "1A";
                 btnA.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btnA.setText(String.valueOf(++pno));
                 sA++;
             } else if (sA == 1) {
                 sequence = sequence.replaceFirst("1A", "2A");
                 btnA.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 sA++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("2A", "");
                 btnA.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 sA = 0;
                 twotileno--;
             }
@@ -266,15 +255,18 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (sB == 0) {
                 sequence += "1B";
                 btnB.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btnB.setText(String.valueOf(++pno));
                 sB++;
             } else if (sB == 1) {
                 sequence = sequence.replaceFirst("1B", "2B");
                 btnB.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 sB++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("2B", "");
                 btnB.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 sB = 0;
                 twotileno--;
             }
@@ -284,19 +276,65 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
             if (sC == 0) {
                 sequence += "1C";
                 btnC.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btnC.setText(String.valueOf(++pno));
                 sC++;
             } else if (sC == 1) {
                 sequence = sequence.replaceFirst("1C", "2C");
                 btnC.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
                 sC++;
                 twotileno++;
             } else {
                 sequence = sequence.replaceFirst("2C", "");
                 btnC.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
                 sC = 0;
                 twotileno--;
             }
         });
+        btnD = findViewById(R.id.usergenbtnD);
+        btnD.setOnClickListener(view -> {
+            if (sD == 0) {
+                sequence += "1D";
+                btnD.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btnD.setText(String.valueOf(++pno));
+                sD++;
+            } else if (sD == 1) {
+                sequence = sequence.replaceFirst("1D", "2D");
+                btnD.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
+                sD++;
+                twotileno++;
+            } else {
+                sequence = sequence.replaceFirst("2D", "");
+                btnD.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
+                sD = 0;
+                twotileno--;
+            }
+        });
+        btnE = findViewById(R.id.usergenbtnE);
+        btnE.setOnClickListener(view -> {
+            if (sE == 0) {
+                sequence += "1E";
+                btnE.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                btnE.setText(String.valueOf(++pno));
+                sE++;
+            } else if (sE == 1) {
+                sequence = sequence.replaceFirst("1E", "2E");
+                btnE.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                resequence();
+                sE++;
+                twotileno++;
+            } else {
+                sequence = sequence.replaceFirst("2E", "");
+                btnE.setBackgroundTintList(ColorStateList.valueOf(color));
+                resequence();
+                sE = 0;
+                twotileno--;
+            }
+        });
+        //pattern sequence creation ends here
         submit.setOnClickListener(view -> {
             if (name.equals("")) {
                 Toast.makeText(UserGenActivity.this, "Please Enter the name of the pattern", Toast.LENGTH_SHORT).show();
@@ -304,9 +342,11 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
                 Toast.makeText(UserGenActivity.this, "Please Make The Pattern", Toast.LENGTH_SHORT).show();
             } else if (twotileno % 2 == 1) {
                 Toast.makeText(UserGenActivity.this, "Invalid Number of Double Tiles", Toast.LENGTH_SHORT).show();
+            } else if (doublevalidity()) {
+                Toast.makeText(UserGenActivity.this, "Invalid Double Tile Sequence", Toast.LENGTH_SHORT).show();
             } else {
                 dbManager.insert(name, sequence, gamemodechoice);
-                if (uploadcommmunitycheck.isChecked()) {
+                if (uploadcommunitycheck.isChecked()) {
                     firebaseAuth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                     //write to firebase
@@ -343,13 +383,84 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String Text=adapterView.getItemAtPosition(i).toString();
-        if(Text.equals("Normal Mode")){gamemodechoice=1;}
-        else if(Text.equals("Timed Mode")){gamemodechoice=2;}
+        String Text = adapterView.getItemAtPosition(i).toString();
+        if (Text.equals("Normal Mode")) {
+            gamemodechoice = 1;
+        } else if (Text.equals("Timed Mode")) {
+            gamemodechoice = 2;
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
+    public void resequence() {
+        //clear texts
+        pno = 0;
+        btn3.setText("");
+        btn4.setText("");
+        btn5.setText("");
+        btn6.setText("");
+        btn7.setText("");
+        btn8.setText("");
+        btn9.setText("");
+        btnA.setText("");
+        btnB.setText("");
+        btnC.setText("");
+        btnD.setText("");
+        btnE.setText("");
+        for (int i = 1; i < sequence.length(); i += 2) {
+            switch (sequence.charAt(i)) {
+                case '3':
+                    btn3.setText(String.valueOf(++pno));
+                    break;
+                case '4':
+                    btn4.setText(String.valueOf(++pno));
+                    break;
+                case '5':
+                    btn5.setText(String.valueOf(++pno));
+                    break;
+                case '6':
+                    btn6.setText(String.valueOf(++pno));
+                    break;
+                case '7':
+                    btn7.setText(String.valueOf(++pno));
+                    break;
+                case '8':
+                    btn8.setText(String.valueOf(++pno));
+                    break;
+                case '9':
+                    btn9.setText(String.valueOf(++pno));
+                    break;
+                case 'A':
+                    btnA.setText(String.valueOf(++pno));
+                    break;
+                case 'B':
+                    btnB.setText(String.valueOf(++pno));
+                    break;
+                case 'C':
+                    btnC.setText(String.valueOf(++pno));
+                    break;
+                case 'D':
+                    btnD.setText(String.valueOf(++pno));
+                    break;
+                case 'E':
+                    btnE.setText(String.valueOf(++pno));
+                    break;
+            }
+        }
+    }
+
+    public boolean doublevalidity() {
+        for (int i = 0; i < sequence.length(); i++) {
+            if (sequence.charAt(i) == '1') i++;
+            else {
+                i += 2;
+                if (sequence.charAt(i) != '2') return true;
+                else i++;
+            }
+        }
+        return false;
+    }
 }

@@ -94,117 +94,273 @@
                     android:rowCount="4"
                     android:columnCount="3"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/pattgridA"
+
+                    <FrameLayout
                         android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgridC"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/TileC"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxtC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgridD"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/TileD"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxtD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgridE"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/TileE"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxtE"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgrid9"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/Tile9"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxt9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgridA"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/TileA"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxtA"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgridB"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/TileB"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxtB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgrid6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/Tile6"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxt6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgrid7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/Tile7"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxt7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1">
+
+                        <ImageView
+                            android:id="@+id/pattgrid8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/Tile8"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxt8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/TileA"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgridB"
+                        android:layout_marginBottom="15dp">
+
+                        <ImageView
+                            android:id="@+id/pattgrid3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/Tile3"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxt3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
                         android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/TileB"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgridC"
+                        android:layout_marginBottom="15dp">
+
+                        <ImageView
+                            android:id="@+id/pattgrid4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/Tile4"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxt4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+
+                    <FrameLayout
                         android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/TileC"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid7"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile7"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid8"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile8"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid9"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile9"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid4"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile4"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid5"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile5"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid6"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile6"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid1"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile1"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid2"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile2"
-                        android:src="@drawable/box"/>
-                    <ImageView
-                        android:id="@+id/pattgrid3"
-                        android:layout_width="40dp"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/Tile3"
-                        android:src="@drawable/box" />
+                        android:layout_marginBottom="15dp">
+
+                        <ImageView
+                            android:id="@+id/pattgrid5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/Tile5"
+                            android:src="@drawable/box" />
+
+                        <TextView
+                            android:id="@+id/patttxt5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
                 </GridLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
