@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+@SuppressWarnings("SyntaxError")
 public class DBManager {
 
     private DatabaseHelper dbHelper;

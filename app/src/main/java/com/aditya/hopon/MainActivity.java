@@ -39,13 +39,13 @@ import com.google.android.gms.tasks.Task;
 public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
     private boolean darkmodetoggle;
-    private int noofpatternscreated;
+    private int noofpatternscreated, noofcommunitypatterns;
     private String ssid = null;
     final String FineLocation = Manifest.permission.ACCESS_FINE_LOCATION;
     private ImageView wificonnectionic;
     private TextView connectionstatustxt;
     private TextView noofpatternscreatedtxt;
-    private TextView connectiondesctxt;
+    private TextView connectiondesctxt, onlinepatternscount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         toolbartitle.setText(R.string.app_name);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        onlinepatternscount = findViewById(R.id.onlinepatterncounttxt);
         LinearLayout patternmainlayout = findViewById(R.id.pattern_main_layout);
         CardView custompatterncard = findViewById(R.id.custompatterncard);
         CardView communitycard = findViewById(R.id.communitycard);
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         loadData();
+        onlinepatternscount.setText(String.valueOf(noofcommunitypatterns));
         noofpatternscreatedtxt.setText(String.valueOf(noofpatternscreated));
         wifistatuscheck();
         locationstatusCheck();
@@ -144,6 +146,10 @@ public class MainActivity extends AppCompatActivity {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             }
             return true;
+        } else if (item.getItemId() == R.id.change_lang_button) {
+            Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -160,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         darkmodetoggle = sharedPreferences.getBoolean("enabledarkmode", false);
         noofpatternscreated = sharedPreferences.getInt("noofpatternscreated", 3);
+        noofcommunitypatterns = sharedPreferences.getInt("noofcommunitypatterns", 50);
     }
 
     public void locationstatusCheck() {

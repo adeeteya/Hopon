@@ -7,17 +7,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -40,20 +43,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class communityActivity extends AppCompatActivity {
-    private int opened=0,noofpatternscreated;View v=null;
+public class communityActivity extends AppCompatActivity implements Custom_Community_Adapter.OnPatternClickListener {
+    View v = null;
+    private int opened = 0, noofpatternscreated, noofcommunitypatterns;
     private SharedPreferences sharedPreferences;
     RelativeLayout relativeLayout;
-    private ListView listView;
+    private RecyclerView recyclerView;
     private DBManager dbManager;
     private DatabaseReference databaseReference;
     private Custom_Community_Adapter adapter;
     private FirebaseAuth firebaseAuth;
     private List<Patterns> patternslist;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pattern);
+        setContentView(R.layout.activity_community);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Community");
         setSupportActionBar(toolbar);
@@ -61,8 +66,7 @@ public class communityActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         relativeLayout = findViewById(R.id.relativelistlayout);
-        listView = findViewById(R.id.patterns_list);
-        listView.setEmptyView(findViewById(R.id.emptytextpattern));
+        recyclerView = findViewById(R.id.communityrecyclerview);
         dbManager = new DBManager(this);
         dbManager.open();
         patternslist = new ArrayList<>();
@@ -97,73 +101,20 @@ public class communityActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 patternslist.clear();
                 for (DataSnapshot patternDatasnap : snapshot.getChildren()) {
+                    noofcommunitypatterns = (int) snapshot.getChildrenCount();
                     Patterns patterns = patternDatasnap.getValue(Patterns.class);
                     patternslist.add(patterns);
                 }
-                adapter = new Custom_Community_Adapter(communityActivity.this, patternslist);
-                listView.setAdapter(adapter);
+                adapter = new Custom_Community_Adapter(communityActivity.this, patternslist, communityActivity.this);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(communityActivity.this));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
-        });
-        listView.setOnItemClickListener((parent, view, position, viewId) -> {
-            TextView nameTextView = view.findViewById(R.id.patternname);
-            TextView sequenceTextView = view.findViewById(R.id.patternsequence);
-            TextView patternmode = view.findViewById(R.id.patternmode);
-            Button downloadbtn = view.findViewById(R.id.patterndownloadbutton);
-            ConstraintLayout hiddendownloadlayout = view.findViewById(R.id.hiddendownloadlayout);
-            TextView patternuid = view.findViewById(R.id.patternuid);
-            TextView patternpid = view.findViewById(R.id.patternpid);
-            String uid = patternuid.getText().toString();
-            assert firebaseUser != null;
-            if (uid.equals(firebaseUser.getUid())) {
-                downloadbtn.setText(R.string.delete);
-                downloadbtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_delete_24, 0, 0, 0);
-            }
-            //none of the patterns are opened
-            if (opened == 0 && hiddendownloadlayout.getVisibility() == View.GONE) {
-                v = view;
-                hiddendownloadlayout.setVisibility(View.VISIBLE);
-                opened = 1;
-            }
-            //current pattern is the only pattern opened
-            else if (opened == 1 && hiddendownloadlayout.getVisibility() == View.VISIBLE) {
-                hiddendownloadlayout.setVisibility(View.GONE);
-                opened = 0;
-            }
-            //some other pattern is already open
-            else if (opened == 1 && hiddendownloadlayout.getVisibility() == View.GONE) {
-                v.findViewById(R.id.hiddendownloadlayout).setVisibility(View.GONE);
-                hiddendownloadlayout.setVisibility(View.VISIBLE);
-                v = view;
-            }
-            downloadbtn.setOnClickListener(view1 -> {
-                if (uid.equals(firebaseUser.getUid())) {
-                    downloadbtn.setText(R.string.delete);
-                    DatabaseReference dbdelete = databaseReference.child(patternpid.getText().toString());
-                    Task<Void> mTask = dbdelete.removeValue();
-                    mTask.addOnSuccessListener(aVoid -> {
-                        noofpatternscreated--;
-                        Toast.makeText(communityActivity.this, "Deleted From The Community!", Toast.LENGTH_SHORT).show();
-                    });
-                    mTask.addOnFailureListener(e -> Toast.makeText(communityActivity.this, "Unknown Error,Couldn't Delete!", Toast.LENGTH_SHORT).show());
-                } else {
-                    int gamemode = 1;
-                    if (patternmode.getText().toString().equals("Timed mode")) gamemode = 2;
-                    dbManager.insert(nameTextView.getText().toString(), sequenceTextView.getText().toString(), gamemode);
-                    noofpatternscreated++;
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putInt("noofpatternscreated", noofpatternscreated);
-                    editor.apply();
-                    Toast.makeText(communityActivity.this, "Pattern Downloaded Successfully!", Toast.LENGTH_SHORT).show();
-                }
-            });
         });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -203,25 +154,13 @@ public class communityActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                //firebase search here
-                DatabaseReference searchref = FirebaseDatabase.getInstance().getReference("Patterns");
-                searchref.orderByChild("name").startAt(s).endAt(s + "\uf8ff").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        patternslist.clear();
-                        for (DataSnapshot patternDatasnap : snapshot.getChildren()) {
-                            Patterns patterns = patternDatasnap.getValue(Patterns.class);
-                            patternslist.add(patterns);
-                        }
-                        adapter = new Custom_Community_Adapter(communityActivity.this, patternslist);
-                        listView.setAdapter(adapter);
+                List<Patterns> filteredpatternsList = new ArrayList<>();
+                for (Patterns item : patternslist) {
+                    if (item.getName().toLowerCase().contains(s.toLowerCase())) {
+                        filteredpatternsList.add(item);
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                }
+                adapter.filterlist(filteredpatternsList);
                 return false;
             }
         });
@@ -235,5 +174,65 @@ public class communityActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void OnPatternClick(int position, View view) {
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        Patterns pattern = patternslist.get(position);
+        ConstraintLayout hiddendownloadlayout = view.findViewById(R.id.hiddendownloadlayout);
+        CardView patterncardview = view.findViewById(R.id.patterncardview);
+        Button downloadbtn = view.findViewById(R.id.patterndownloadbutton);
+        if (pattern.getUid().equals(firebaseUser.getUid())) {
+            downloadbtn.setText(R.string.delete);
+            downloadbtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_delete_24, 0, 0, 0);
+        } else {
+            downloadbtn.setText(R.string.download);
+            downloadbtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_download_24, 0, 0, 0);
+        }
+        //none of the patterns are opened
+        if (opened == 0 && hiddendownloadlayout.getVisibility() == View.GONE) {
+            v = view;
+            TransitionManager.beginDelayedTransition(patterncardview, new AutoTransition());
+            hiddendownloadlayout.setVisibility(View.VISIBLE);
+            opened = 1;
+        }
+        //current pattern is the only pattern opened
+        else if (opened == 1 && hiddendownloadlayout.getVisibility() == View.VISIBLE) {
+            hiddendownloadlayout.setVisibility(View.GONE);
+            opened = 0;
+        }
+        //some other pattern is already open
+        else if (opened == 1 && hiddendownloadlayout.getVisibility() == View.GONE) {
+            v.findViewById(R.id.hiddendownloadlayout).setVisibility(View.GONE);
+            TransitionManager.beginDelayedTransition(patterncardview, new AutoTransition());
+            hiddendownloadlayout.setVisibility(View.VISIBLE);
+            v = view;
+        }
+        downloadbtn.setOnClickListener(view1 -> {
+            if (pattern.getUid().equals(firebaseUser.getUid())) {
+                downloadbtn.setText(R.string.delete);
+                DatabaseReference dbdelete = databaseReference.child(pattern.getPid());
+                Task<Void> mTask = dbdelete.removeValue();
+                mTask.addOnSuccessListener(aVoid -> Toast.makeText(communityActivity.this, "Deleted From The Community!", Toast.LENGTH_SHORT).show());
+                mTask.addOnFailureListener(e -> Toast.makeText(communityActivity.this, "Unknown Error,Couldn't Delete!", Toast.LENGTH_SHORT).show());
+            } else {
+                dbManager.insert(pattern.getName(), pattern.getSequence(), pattern.getMode());
+                noofpatternscreated++;
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("noofpatternscreated", noofpatternscreated);
+                editor.apply();
+                Toast.makeText(communityActivity.this, "Pattern Downloaded Successfully!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("noofcommunitypatterns", noofcommunitypatterns);
+        editor.apply();
+        super.onStop();
     }
 }

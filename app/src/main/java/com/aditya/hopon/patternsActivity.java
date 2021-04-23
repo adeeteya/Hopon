@@ -16,22 +16,25 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
-public class patternsActivity extends AppCompatActivity implements DeleteConfirmationDialog.DeleteConfirmationDialogListener{
+public class patternsActivity extends AppCompatActivity {
     private DBManager dbManager;
     private ListView listView;
     private Custom_Adapter adapter;
     private String id;
     private Cursor cursor;
-    int opened=0;View v=null;
-    final String[] from = new String[] { DatabaseHelper._ID,
-            DatabaseHelper.NAME, DatabaseHelper.SEQUENCE,DatabaseHelper.MODE};
-    final int[] to = new int[] { R.id.patternid, R.id.patternname, R.id.patternsequence , R.id.patternmode};
+    int opened = 0;
+    View v = null;
+    final String[] from = new String[]{DatabaseHelper._ID,
+            DatabaseHelper.NAME, DatabaseHelper.SEQUENCE, DatabaseHelper.MODE};
+    final int[] to = new int[]{R.id.patternid, R.id.patternname, R.id.patternsequence, R.id.patternmode};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,7 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
         //OnCLickListener for List
         listView.setOnItemClickListener((parent, view, position, viewId) -> {
             TextView idTextView = view.findViewById(R.id.patternid);
+            TextView nameTextView = view.findViewById(R.id.patternname);
             TextView sequenceTextView = view.findViewById(R.id.patternsequence);
             TextView patternmodetxt = view.findViewById(R.id.patternmodetxt);
             id = idTextView.getText().toString();
@@ -251,8 +255,25 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
                 patterndeletebutton.setAlpha(.5f);
             }
             patterndeletebutton.setOnClickListener(view1 -> {
-                DeleteConfirmationDialog dialog = new DeleteConfirmationDialog();
-                dialog.show(getSupportFragmentManager(), "delete");
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle("Delete " + nameTextView.getText().toString() + " ?");
+                alert.setMessage("Are you sure you want to Delete this pattern?").setNegativeButton("Cancel", (dialogInterface, i) -> {
+                });
+                alert.setPositiveButton("Yes", (dialogInterface, i) -> {
+                    dbManager.delete(Integer.parseInt(id));
+                    Toast.makeText(patternsActivity.this, "Pattern Removed Successfully", Toast.LENGTH_SHORT).show();
+                    cursor = dbManager.fetch();
+                    adapter = new Custom_Adapter(patternsActivity.this, R.layout.pattern_view_layout, cursor, from, to, 0);
+                    adapter.notifyDataSetChanged();
+                    listView.setAdapter(adapter);
+                    int noofpatternscreated;
+                    SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+                    noofpatternscreated = sharedPreferences.getInt("noofpatternscreated", 3);
+                    noofpatternscreated--;
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("noofpatternscreated", noofpatternscreated);
+                    editor.apply();
+                }).show();
             });
             //button handling ends here
             //hidden layout handling
@@ -269,7 +290,6 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
             //this is the only pattern opened
             else if (opened == 1 && hiddenpatternlayout.getVisibility() == View.VISIBLE) {
                 patternmodetxt.setVisibility(View.INVISIBLE);
-                TransitionManager.beginDelayedTransition(patterncardview, new AutoTransition());
                 hiddenpatternlayout.setVisibility(View.GONE);
                 opened = 0;
             }
@@ -317,22 +337,5 @@ public class patternsActivity extends AppCompatActivity implements DeleteConfirm
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onYesClicked() {
-        dbManager.delete(Integer.parseInt(id));
-        Toast.makeText(this, "Pattern Removed Successfully", Toast.LENGTH_SHORT).show();
-        cursor = dbManager.fetch();
-        adapter=new Custom_Adapter(this, R.layout.pattern_view_layout, cursor, from, to, 0);
-        adapter.notifyDataSetChanged();
-        listView.setAdapter(adapter);
-        int noofpatternscreated;
-        SharedPreferences sharedPreferences=getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-        noofpatternscreated=sharedPreferences.getInt("noofpatternscreated",3);
-        noofpatternscreated--;
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putInt("noofpatternscreated",noofpatternscreated);
-        editor.apply();
     }
 }

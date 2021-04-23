@@ -45,4 +45,16 @@
     <string name="game_mode">Game mode</string>
     <string name="add_this_pattern">Add This Pattern</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
+    <string name="arrow_icon">arrow_icon</string>
+    <string name="blue_tile">blue_tile</string>
+    <string name="red_tile">red_tile</string>
+    <string name="white_tile">white_tile</string>
+    <string name="show_tips">Show tips on start</string>
+    <string name="instruction_txt">Switch the state of each box according to the legend provided above to make a pattern sequence. A particular tile can only be used once in the sequence. Once a tile is in blue state(double jump) it\'s following tile should also be in the blue state(because it\'s a double jump). Every time a box is clicked it\'s position in the sequence is displayed.Removing a box from the sequence will re-update the entire sequence.The created pattern could also be uploaded to the community(by checking the community box) for other user\'s or friend\'s to download.</string>
+    <string name="bluelegendtxt">Denotes two legs(Double) jump, Clicking on this will delete the tile from the sequence(white box).</string>
+    <string name="redlegendtxt">Denotes one leg(single) jump, clicking on this will switch the tile to a double jump(blue box).</string>
+    <string name="whitelegendtxt">Denotes an empty tile(not in the sequence), Clicking on this will switch the tile to a single jump(red box).</string>
+    <string name="legend">Legend</string>
+    <string name="clear">Clear</string>
+    <string name="change_language">Change Language</string>
 </resources>

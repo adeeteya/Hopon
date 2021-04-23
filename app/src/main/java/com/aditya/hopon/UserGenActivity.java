@@ -5,9 +5,9 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -30,14 +31,28 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class UserGenActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText nameinput;
-    private int gamemodechoice, noofpatternscreated;
+    private Menu usergenmenu;
+    private SharedPreferences sharedPreferences;
+    private int gamemodechoice, noofpatternscreated, noofcommunitypatterns;
     private DBManager dbManager;
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private String sequence = "", name = "";
-    private Button btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnA, btnB, btnC, btnD, btnE;
+    private Button btn3;
+    private Button btn4;
+    private Button btn5;
+    private Button btn6;
+    private Button btn7;
+    private Button btn8;
+    private Button btn9;
+    private Button btnA;
+    private Button btnB;
+    private Button btnC;
+    private Button btnD;
+    private Button btnE;
     private CheckedTextView uploadcommunitycheck;
     private int s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, s8 = 0, s9 = 0, sA = 0, sB = 0, sC = 0, sD = 0, sE = 0, twotileno = 0, pno = 0;
+    private Boolean tips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +64,26 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        noofpatternscreated = sharedPreferences.getInt("noofpatternscreated", 3);
+        noofcommunitypatterns = sharedPreferences.getInt("noofcommunitypatterns", 50);
+        tips = sharedPreferences.getBoolean("creatingtips", true);
+        if (tips) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = UserGenActivity.this.getLayoutInflater();
+            View view = inflater.inflate(R.layout.pattern_creatingtips, null);
+            builder.setView(view).setTitle("Instructions to create a Pattern")
+                    .setNegativeButton("Don't show this again", (dialogInterface, i) -> {
+                        tips = false;
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        usergenmenu.getItem(0).setChecked(false);
+                        editor.putBoolean("creatingtips", tips);
+                        editor.apply();
+                    })
+                    .setPositiveButton("Ok", (dialogInterface, i) -> {
+
+                    }).show();
+        }
         nameinput = findViewById(R.id.nameinputtxt);
         Button submit = findViewById(R.id.submitpatternbtn);
         Spinner spinner = findViewById(R.id.gamemodespinner);
@@ -58,8 +93,6 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
         spinner.setOnItemSelectedListener(this);
         dbManager = new DBManager(this);
         dbManager.open();
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        noofpatternscreated = sharedPreferences.getInt("noofpatternscreated", 3);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Patterns");
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = UserGenActivity.this.getTheme();
@@ -67,20 +100,6 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
         @ColorInt int color = typedValue.data;
         uploadcommunitycheck = findViewById(R.id.uploadcommunitycheck);
         uploadcommunitycheck.setOnClickListener(view -> uploadcommunitycheck.setChecked(!uploadcommunitycheck.isChecked()));
-        nameinput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                name = nameinput.getText().toString().trim();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
         //pattern sequence creation starts here
         btn3 = findViewById(R.id.usergenbtn3);
         btn3.setOnClickListener(view -> {
@@ -336,6 +355,7 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
         });
         //pattern sequence creation ends here
         submit.setOnClickListener(view -> {
+            name = nameinput.getText().toString().trim();
             if (name.equals("")) {
                 Toast.makeText(UserGenActivity.this, "Please Enter the name of the pattern", Toast.LENGTH_SHORT).show();
             } else if (sequence.equals("")) {
@@ -356,7 +376,7 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
                         if (pid != null) {
                             databaseReference.child(pid).setValue(pattern);
                         }
-                        //databaseReference.child(String.valueOf(maxId+1)).setValue(pattern);
+                        noofcommunitypatterns++;
                         Toast.makeText(UserGenActivity.this, "Custom Pattern Uploaded Successfully", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(UserGenActivity.this, "Custom Pattern Added but couldn't upload to Community", Toast.LENGTH_SHORT).show();
@@ -365,17 +385,82 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
                 noofpatternscreated++;
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("noofpatternscreated", noofpatternscreated);
+                editor.putInt("noofcommunitypatterns", noofcommunitypatterns);
                 editor.apply();
-                Toast.makeText(UserGenActivity.this, "Custom Pattern Added", Toast.LENGTH_SHORT).show();
+                if (!uploadcommunitycheck.isChecked())
+                    Toast.makeText(UserGenActivity.this, "Custom Pattern Added", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
+        Button clearButton = findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(view -> {
+            sequence = "";
+            twotileno = 0;
+            s3 = 0;
+            s4 = 0;
+            s5 = 0;
+            s6 = 0;
+            s7 = 0;
+            s8 = 0;
+            s9 = 0;
+            sA = 0;
+            sB = 0;
+            sC = 0;
+            sD = 0;
+            sE = 0;
+            pno = 0;
+            btn3.setText("");
+            btn4.setText("");
+            btn5.setText("");
+            btn6.setText("");
+            btn7.setText("");
+            btn8.setText("");
+            btn9.setText("");
+            btnA.setText("");
+            btnB.setText("");
+            btnC.setText("");
+            btnD.setText("");
+            btnE.setText("");
+            btn3.setBackgroundTintList(ColorStateList.valueOf(color));
+            btn4.setBackgroundTintList(ColorStateList.valueOf(color));
+            btn5.setBackgroundTintList(ColorStateList.valueOf(color));
+            btn6.setBackgroundTintList(ColorStateList.valueOf(color));
+            btn7.setBackgroundTintList(ColorStateList.valueOf(color));
+            btn8.setBackgroundTintList(ColorStateList.valueOf(color));
+            btn9.setBackgroundTintList(ColorStateList.valueOf(color));
+            btnA.setBackgroundTintList(ColorStateList.valueOf(color));
+            btnB.setBackgroundTintList(ColorStateList.valueOf(color));
+            btnC.setBackgroundTintList(ColorStateList.valueOf(color));
+            btnD.setBackgroundTintList(ColorStateList.valueOf(color));
+            btnE.setBackgroundTintList(ColorStateList.valueOf(color));
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.usergen_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.show_tips_button);
+        menuItem.setChecked(tips);
+        usergenmenu = menu;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
+            return true;
+        } else if (item.getItemId() == R.id.show_tips_button) {
+            if (item.isChecked()) {
+                item.setChecked(false);
+                tips = false;
+            } else {
+                item.setChecked(true);
+                tips = true;
+            }
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("creatingtips", tips);
+            editor.apply();
             return true;
         }
         return super.onOptionsItemSelected(item);

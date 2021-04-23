@@ -12,18 +12,14 @@ import androidx.cursoradapter.widget.SimpleCursorAdapter;
 
 public class Custom_Adapter extends SimpleCursorAdapter {
 
-    private final Context mContext;
     private Context appContext;
     private final int layout;
-    private final Cursor cr;
     private final LayoutInflater inflater;
 
     public Custom_Adapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, 0);
         this.layout = layout;
-        this.mContext = context;
         this.inflater = LayoutInflater.from(context);
-        this.cr = c;
     }
 
     @Override

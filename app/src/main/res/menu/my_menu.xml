@@ -6,4 +6,8 @@
         android:title="@string/enable_dark_mode"
         android:checkable="true"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/change_lang_button"
+        android:title="@string/change_language"
+        app:showAsAction="never" />
 </menu>

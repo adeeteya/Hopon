@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/Legendtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/legend"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Legendtxt">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:contentDescription="@string/white_tile"
+            android:scaleType="centerCrop"
+            android:src="@drawable/box" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/arrow_icon"
+            android:src="@drawable/ic_baseline_arrow_right_alt_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:text="@string/whitelegendtxt"
+            android:textColor="?android:attr/textColorPrimary" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_1">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:contentDescription="@string/red_tile"
+            android:scaleType="centerCrop"
+            android:src="@drawable/box"
+            app:tint="@color/material_red" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/arrow_icon"
+            android:src="@drawable/ic_baseline_arrow_right_alt_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:text="@string/redlegendtxt"
+            android:textColor="?android:attr/textColorPrimary" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_2">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:contentDescription="@string/blue_tile"
+            android:scaleType="centerCrop"
+            android:src="@drawable/box"
+            app:tint="@color/material_blue" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/arrow_icon"
+            android:src="@drawable/ic_baseline_arrow_right_alt_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:text="@string/bluelegendtxt"
+            android:textColor="?android:attr/textColorPrimary" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/instruction_txt"
+        android:textColor="?android:attr/textColorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_3" />
+</androidx.constraintlayout.widget.ConstraintLayout>
