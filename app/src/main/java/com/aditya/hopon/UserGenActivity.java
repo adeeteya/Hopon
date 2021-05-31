@@ -398,6 +398,7 @@ public class UserGenActivity extends AppCompatActivity implements AdapterView.On
                         noofcommunitypatterns++;
                         Toast.makeText(UserGenActivity.this, "Custom Pattern Uploaded Successfully", Toast.LENGTH_SHORT).show();
                     } else {
+                        dbManager.insert(name, sequence, gamemodechoice,null);
                         Toast.makeText(UserGenActivity.this, "Custom Pattern Added but couldn't upload to Community", Toast.LENGTH_SHORT).show();
                     }
                     dbManager.insert(name, sequence, gamemodechoice, pid);
