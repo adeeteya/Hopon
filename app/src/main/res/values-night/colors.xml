@@ -12,7 +12,8 @@
     <color name="material_blue">#536DFE</color>
     <color name="colorGrey">#dddddd</color>
 
-    <color name="userGenBtnbg">#FFFFFF</color>
+    <color name="userGenBtnbg">#262626</color>
+
 
     <color name="cod_gray">#121212</color>
     <!--retro pattern grid colors-->

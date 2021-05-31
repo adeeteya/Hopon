@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/relativelistlayout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,14 +11,395 @@
         android:id="@id/toolbar"
         layout="@layout/toolbar" />
 
+    <GridLayout
+        android:id="@+id/patternGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:columnCount="3"
+        android:focusable="true"
+        android:rowCount="4">
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgridC"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/TileC"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxtC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgridD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/TileD"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxtD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgridE"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/TileE"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxtE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgrid9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/Tile9"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxt9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgridA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/TileA"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxtA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgridB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/TileB"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxtB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgrid6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/Tile6"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxt6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgrid7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/Tile7"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxt7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgrid8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/Tile8"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxt8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgrid3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/Tile3"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxt3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgrid4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/Tile4"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxt4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+            <ImageView
+                android:id="@+id/pattgrid5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/Tile5"
+                android:src="@drawable/box"
+                android:tintMode="multiply" />
+
+            <TextView
+                android:id="@+id/patttxt5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </FrameLayout>
+    </GridLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_above="@id/patterns_list"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@id/patternGrid"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/patternNameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/patternModeIcon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/patternNameTxt"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/pattern_mode_icon"
+                android:src="@drawable/ic_baseline_videogame_asset_24" />
+
+            <TextView
+                android:id="@+id/patternModeTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/patternNameTxt"
+                android:layout_alignBottom="@+id/patternModeIcon"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_toEndOf="@id/patternModeIcon"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/patternPlayButton"
+                style="?android:attr/colorButtonNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/patternDeleteButton"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/play_button_color"
+                android:focusable="false"
+                android:text="@string/play"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/patternDeleteButton"
+                style="?android:attr/colorButtonNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#FF5252"
+                android:drawableTint="@color/white"
+                android:focusable="false"
+                android:text="@string/delete"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
     <ListView
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@id/patternGrid"
         android:id="@+id/patterns_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/box_bg"
         android:fastScrollEnabled="true"
         android:padding="10dp"
-        android:dividerHeight="1dp"/>
+        android:dividerHeight="1dp" />
 
     <TextView
         android:id="@+id/emptytextpattern"

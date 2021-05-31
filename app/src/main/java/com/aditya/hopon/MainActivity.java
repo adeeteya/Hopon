@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -65,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
         if (firstStart) {
-            dbManager.insert("Regular", "1426281A2C2E", 1);
-            dbManager.insert("Single Jumps", "14161A1E", 2);
-            dbManager.insert("Multiplex", "232517192C2E", 1);
+            dbManager.insert("Regular", "1426281A2C2E", 1, null);
+            dbManager.insert("Single Jumps", "14161A1E", 2, null);
+            dbManager.insert("Multiplex", "232517192C2E", 1, null);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("firstStart", false);
             editor.apply();
@@ -170,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void locationstatusCheck() {
+        if (checkSelfPermission(FineLocation) != PackageManager.PERMISSION_GRANTED) return;
         LocationRequest mLocationRequest = LocationRequest.create().setPriority(LocationRequest.PRIORITY_LOW_POWER);
         LocationSettingsRequest.Builder settingsBuilder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
         settingsBuilder.setAlwaysShow(true);
@@ -201,11 +203,11 @@ public class MainActivity extends AppCompatActivity {
             ssid = ssid.substring(1, ssid.length() - 1);
         }
         if (ssid.equals("Aditya")) {
-            wificonnectionic.clearColorFilter();
+            wificonnectionic.setImageTintList(ColorStateList.valueOf(Color.parseColor("#68B684")));
             connectionstatustxt.setText(R.string.connected);
             connectiondesctxt.setText(R.string.wifi_network);
         } else {
-            wificonnectionic.setColorFilter(Color.parseColor("#FF5252"));
+            wificonnectionic.setImageTintList(ColorStateList.valueOf(Color.parseColor("#E63946")));
             connectionstatustxt.setText(R.string.disconnected);
             connectiondesctxt.setText(R.string.tap_to_connect);
         }

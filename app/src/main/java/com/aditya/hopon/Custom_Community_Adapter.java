@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -55,51 +54,51 @@ public class Custom_Community_Adapter extends RecyclerView.Adapter<Custom_Commun
                 i++;
                 switch (sequence.charAt(i)) {
                     case '3':
-                        holder.img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txt3.setText(String.valueOf(++pno));
                         break;
                     case '4':
-                        holder.img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txt4.setText(String.valueOf(++pno));
                         break;
                     case '5':
-                        holder.img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txt5.setText(String.valueOf(++pno));
                         break;
                     case '6':
-                        holder.img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txt6.setText(String.valueOf(++pno));
                         break;
                     case '7':
-                        holder.img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txt7.setText(String.valueOf(++pno));
                         break;
                     case '8':
-                        holder.img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txt8.setText(String.valueOf(++pno));
                         break;
                     case '9':
-                        holder.img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txt9.setText(String.valueOf(++pno));
                         break;
                     case 'A':
-                        holder.imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txtA.setText(String.valueOf(++pno));
                         break;
                     case 'B':
-                        holder.imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txtB.setText(String.valueOf(++pno));
                         break;
                     case 'C':
-                        holder.imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txtC.setText(String.valueOf(++pno));
                         break;
                     case 'D':
-                        holder.imgD.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.imgD.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txtD.setText(String.valueOf(++pno));
                         break;
                     case 'E':
-                        holder.imgE.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
+                        holder.imgE.setImageTintList(ColorStateList.valueOf(Color.parseColor("#EE6C4D")));
                         holder.txtE.setText(String.valueOf(++pno));
                         break;
                 }
@@ -107,102 +106,102 @@ public class Custom_Community_Adapter extends RecyclerView.Adapter<Custom_Commun
                 i++;
                 switch (sequence.charAt(i)) {
                     case '3':
-                        holder.img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt3.setText(String.valueOf(++pno));
                         break;
                     case '4':
-                        holder.img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt4.setText(String.valueOf(++pno));
                         break;
                     case '5':
-                        holder.img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt5.setText(String.valueOf(++pno));
                         break;
                     case '6':
-                        holder.img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt6.setText(String.valueOf(++pno));
                         break;
                     case '7':
-                        holder.img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt7.setText(String.valueOf(++pno));
                         break;
                     case '8':
-                        holder.img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt8.setText(String.valueOf(++pno));
                         break;
                     case '9':
-                        holder.img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt9.setText(String.valueOf(++pno));
                         break;
                     case 'A':
-                        holder.imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtA.setText(String.valueOf(++pno));
                         break;
                     case 'B':
-                        holder.imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtB.setText(String.valueOf(++pno));
                         break;
                     case 'C':
-                        holder.imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtC.setText(String.valueOf(++pno));
                         break;
                     case 'D':
-                        holder.imgD.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgD.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtD.setText(String.valueOf(++pno));
                         break;
                     case 'E':
-                        holder.imgE.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgE.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtE.setText(String.valueOf(++pno));
                         break;
                 }
                 i += 2;
                 switch (sequence.charAt(i)) {
                     case '3':
-                        holder.img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt3.setText(String.valueOf(++pno));
                         break;
                     case '4':
-                        holder.img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt4.setText(String.valueOf(++pno));
                         break;
                     case '5':
-                        holder.img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt5.setText(String.valueOf(++pno));
                         break;
                     case '6':
-                        holder.img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt6.setText(String.valueOf(++pno));
                         break;
                     case '7':
-                        holder.img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt7.setText(String.valueOf(++pno));
                         break;
                     case '8':
-                        holder.img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt8.setText(String.valueOf(++pno));
                         break;
                     case '9':
-                        holder.img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txt9.setText(String.valueOf(++pno));
                         break;
                     case 'A':
-                        holder.imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtA.setText(String.valueOf(++pno));
                         break;
                     case 'B':
-                        holder.imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtB.setText(String.valueOf(++pno));
                         break;
                     case 'C':
-                        holder.imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtC.setText(String.valueOf(++pno));
                         break;
                     case 'D':
-                        holder.imgD.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgD.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtD.setText(String.valueOf(++pno));
                         break;
                     case 'E':
-                        holder.imgE.setImageTintList(ColorStateList.valueOf(Color.parseColor("#536DFE")));
+                        holder.imgE.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
                         holder.txtE.setText(String.valueOf(++pno));
                         break;
                 }
@@ -224,7 +223,7 @@ public class Custom_Community_Adapter extends RecyclerView.Adapter<Custom_Commun
         holder.imgC.setImageTintList(null);
         holder.imgD.setImageTintList(null);
         holder.imgE.setImageTintList(null);
-        holder.hiddendownloadlayout.setVisibility(View.GONE);
+        //holder.hiddendownloadlayout.setVisibility(View.GONE);
     }
 
     @Override
@@ -238,13 +237,13 @@ public class Custom_Community_Adapter extends RecyclerView.Adapter<Custom_Commun
     }
 
     public interface OnPatternClickListener {
-        void OnPatternClick(int position, View view);
+        void OnPatternClick(int position);
     }
 
     public static class patternViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView pattername, authornametxt, idTextView, patternmode, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txtA, txtB, txtC, txtD, txtE;
         final ImageView patternmodeic, img3, img4, img5, img6, img7, img8, img9, imgA, imgB, imgC, imgD, imgE;
-        final ConstraintLayout hiddendownloadlayout;
+        //final ConstraintLayout hiddendownloadlayout;
         final OnPatternClickListener onPatternClickListener;
 
         public patternViewHolder(@NonNull View itemView, OnPatternClickListener onPatternClickListener) {
@@ -278,14 +277,14 @@ public class Custom_Community_Adapter extends RecyclerView.Adapter<Custom_Commun
             txtC = itemView.findViewById(R.id.patttxtC);
             txtD = itemView.findViewById(R.id.patttxtD);
             txtE = itemView.findViewById(R.id.patttxtE);
-            hiddendownloadlayout = itemView.findViewById(R.id.hiddendownloadlayout);
+            //hiddendownloadlayout = itemView.findViewById(R.id.hiddendownloadlayout);
             itemView.setOnClickListener(this);
             this.onPatternClickListener = onPatternClickListener;
         }
 
         @Override
         public void onClick(View view) {
-            onPatternClickListener.OnPatternClick(getAdapterPosition(), view);
+            onPatternClickListener.OnPatternClick(getAdapterPosition());
         }
     }
 }

@@ -19,8 +19,6 @@ public class Patterns {
 
     public String getUid(){return uid;}
 
-    public String getPid(){return pid;}
-
     public int getMode() {
         return mode;
     }

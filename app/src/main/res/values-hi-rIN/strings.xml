@@ -3,12 +3,9 @@
     <string name="game_mode1">प्रतिरूप</string>
     <string name="play">खेल</string>
     <string name="delete">हटाना</string>
-    <string name="download">डाउनलोड</string>
-    <string name="unknown">अनजान</string>
     <string name="normalmode">सामान्य स्थिति</string>
     <string name="timedmode">समयबद्ध विधा</string>
     <string name="disconnected">वियोजित</string>
-    <string name="created_by">द्वारा निर्मित</string>
     <string name="st_place">जगह</string>
     <string name="choose_from_the_different_patterns">विभिन्न पैटर्न से चुनें</string>
     <string name="patterns">प्रतिरूप</string>
@@ -42,4 +39,7 @@
     <string name="legend">किंवदंती</string>
     <string name="clear">स्पष्ट</string>
     <string name="change_language">भाषा बदलें</string>
+    <string name="pattern_mode_icon">पैटर्न मोड आइकन</string>
+    <string name="download">डोनलोड</string>
+    <string name="downloaded">डाउनलोड हो चुका है</string>
 </resources>

@@ -3,9 +3,9 @@
     <string name="game_mode1">Patterns</string>
     <string name="play">Play</string>
     <string name="delete">Delete</string>
-    <string name="download">Download</string>
+    <string name="download">"Download</string>
+    <string name="downloaded">"Downloaded</string>
     <string name="search">Search</string>
-    <string name="unknown">Unknown</string>
     <string name="normalmode">Normal Mode</string>
     <string name="timedmode">Timed Mode</string>
     <string name="disconnected">Disconnected</string>
@@ -25,10 +25,9 @@
     <string name="TileC" translatable="false">C</string>
     <string name="TileD" translatable="false">D</string>
     <string name="TileE" translatable="false">E</string>
-    <string name="created_by">Created by</string>
     <string name="st_place">st place</string>
     <string name="wifi_network">HopOn Board</string>
-    <string name="choose_from_the_different_patterns">Choose from the different patterns</string>
+    <string name="choose_from_the_different_patterns">All the downloaded and user created patterns</string>
     <string name="patterns">patterns</string>
     <string name="tap_to_connect">Tap to Connect</string>
     <string name="connected">Connected</string>
@@ -41,7 +40,7 @@
     <string name="uploadtocommunity">Upload to the Community</string>
     <string name="patterns_from_other_users">Download patterns</string>
     <string name="no_patterns">No Patterns Found</string>
-    <string name="enter_the_name_of_the_pattern">Enter the Name of the pattern</string>
+    <string name="enter_the_name_of_the_pattern">Pattern name</string>
     <string name="game_mode">Game mode</string>
     <string name="add_this_pattern">Add This Pattern</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
@@ -57,4 +56,5 @@
     <string name="legend">Legend</string>
     <string name="clear">Clear</string>
     <string name="change_language">Change Language</string>
+    <string name="pattern_mode_icon">Pattern Mode Icon</string>
 </resources>

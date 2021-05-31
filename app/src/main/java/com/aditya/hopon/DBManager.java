@@ -29,11 +29,12 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void insert(String name, String sequence,int mode) {
+    public void insert(String name, String sequence, int mode, String pid) {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.NAME, name);
         contentValue.put(DatabaseHelper.SEQUENCE, sequence);
-        contentValue.put(DatabaseHelper.MODE,mode);
+        contentValue.put(DatabaseHelper.MODE, mode);
+        contentValue.put(DatabaseHelper.PID, pid);
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
@@ -50,6 +51,16 @@ public class DBManager {
         return database.rawQuery("SELECT * from Patterns where name like '" + name + "%';", null);
     }
 
+    public boolean checkIfPidExists(String pid) {
+        Cursor temp = database.rawQuery("SELECT * from Patterns where pid=='" + pid + "';", null);
+        if (temp.getCount() > 0) {
+            temp.close();
+            return true;
+        }
+        temp.close();
+        return false;
+    }
+
 // --Commented out by Inspection START (16/04/2021 7:50 AM):
 //    public int update(long _id, String name, String sequence, int mode) {
 //        ContentValues contentValues = new ContentValues();
@@ -62,8 +73,8 @@ public class DBManager {
 
     public void delete(long _id) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._ID + "=" + _id, null);
-        database.execSQL("create table temp ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, sequence TEXT, mode INTEGER);");
-        database.execSQL("insert into temp (name, sequence, mode) select name, sequence, mode from Patterns;");
+        database.execSQL("create table temp ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, sequence TEXT, mode INTEGER, pid TEXT);");
+        database.execSQL("insert into temp (name, sequence, mode, pid) select name, sequence, mode, pid from Patterns;");
         database.execSQL("drop table Patterns;");
         database.execSQL("alter table temp rename to Patterns;");
     }

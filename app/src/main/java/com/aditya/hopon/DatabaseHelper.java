@@ -14,14 +14,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String NAME = "name";
     public static final String SEQUENCE = "sequence";
     public static final String MODE = "mode";
+    public static final String PID = "pid";
     // Database Information
     static final String DB_NAME = "Hopon_Patterns.DB";
 
     // database version
     static final int DB_VERSION = 1;
     // Creating table query
-    private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME + " TEXT NOT NULL, " + SEQUENCE + " TEXT, " + MODE +" INTEGER);";
+    private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + NAME + " TEXT NOT NULL, " + SEQUENCE + " TEXT, " + MODE + " INTEGER, " + PID + " TEXT);";
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

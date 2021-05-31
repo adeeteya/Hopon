@@ -8,34 +8,41 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameinputtxt"
-        android:inputType="text"
-        android:maxLength="20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:autofillHints="no"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/gamemodestringtxt"
-        android:textColor="?android:attr/textColorPrimary"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/enter_the_name_of_the_pattern"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:boxBackgroundMode="filled"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@id/gamemodestringtxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:lines="1"
+            android:minHeight="64dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/gamemodestringtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text="@string/game_mode"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/uploadcommunitycheck"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/gamemodespinner"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameinputtxt" />
 
     <Spinner
@@ -44,22 +51,32 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/gamemodestringtxt"
-        app:layout_constraintLeft_toRightOf="@id/gamemodestringtxt"
+        app:layout_constraintStart_toEndOf="@id/gamemodestringtxt"
         app:layout_constraintTop_toTopOf="@+id/gamemodestringtxt" />
 
-    <CheckedTextView
+    <TextView
         android:id="@+id/uploadcommunitycheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         android:gravity="center_vertical"
         android:text="@string/uploadtocommunity"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/usergenpatterngrid"
+        android:textColor="?android:attr/textColorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/usergenpatterngrid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gamemodestringtxt" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/checkBoxAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="@id/uploadcommunitycheck"
+        app:layout_constraintStart_toEndOf="@+id/uploadcommunitycheck"
+        app:layout_constraintTop_toTopOf="@id/uploadcommunitycheck"
+        app:lottie_rawRes="@raw/checkbox_animation"
+        app:lottie_scale="0.4" />
 
     <Button
         android:id="@+id/clearButton"
@@ -76,147 +93,160 @@
         android:id="@+id/usergenpatterngrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:rowCount="4"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:columnCount="3"
-        android:layout_marginTop="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:rowCount="4"
+        app:layout_constraintBottom_toTopOf="@id/submitpatternbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <Button
+        app:layout_constraintTop_toBottomOf="@+id/uploadcommunitycheck">
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtnC"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
             android:layout_width="wrap_content"
-            android:backgroundTintMode="multiply"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtnD"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
             android:layout_width="wrap_content"
-            android:backgroundTintMode="multiply"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtnE"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
             android:layout_width="wrap_content"
-            android:backgroundTintMode="multiply"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtn9"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
             android:layout_width="wrap_content"
-            android:backgroundTintMode="multiply"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtnA"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
             android:layout_width="wrap_content"
-            android:backgroundTintMode="multiply"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtnB"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
             android:layout_width="wrap_content"
-            android:backgroundTintMode="multiply"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtn6"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
             android:layout_width="wrap_content"
-            android:backgroundTintMode="multiply"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtn7"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
-            android:backgroundTintMode="multiply"
             android:layout_width="wrap_content"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtn8"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
             android:layout_width="wrap_content"
-            android:backgroundTintMode="multiply"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtn3"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
-            android:backgroundTintMode="multiply"
             android:layout_width="wrap_content"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtn4"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
-            android:backgroundTintMode="multiply"
             android:layout_width="wrap_content"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
-        <Button
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/usergenbtn5"
-            android:layout_height="80dp"
-            android:background="@drawable/box"
-            android:textColor="@color/white"
-            android:backgroundTint="?attr/colorOnSecondary"
-            android:backgroundTintMode="multiply"
             android:layout_width="wrap_content"
+            android:layout_height="80dp"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1" />
+            android:layout_columnWeight="1"
+            android:background="@drawable/box_usergen_btn"
+            android:backgroundTint="@color/userGenBtnbg"
+            android:backgroundTintMode="multiply"
+            android:textColor="@color/white" />
     </GridLayout>
 
     <Button
         android:id="@+id/submitpatternbtn"
         android:layout_width="0dp"
         android:layout_height="90dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/corporatesproregular"
         android:text="@string/add_this_pattern"
         android:textAllCaps="false"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:textSize="32sp"
-        android:fontFamily="@font/corporatesproregular"
-        app:layout_constraintTop_toBottomOf="@+id/usergenpatterngrid"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/usergenpatterngrid" />
 </androidx.constraintlayout.widget.ConstraintLayout>
