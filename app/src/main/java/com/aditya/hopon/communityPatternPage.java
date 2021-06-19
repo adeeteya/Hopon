@@ -10,13 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,7 +31,7 @@ public class communityPatternPage extends AppCompatActivity {
     private String sequence;
     private String pid;
     private Button downloadBtn;
-
+    private ConstraintLayout communityConstraintLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,7 @@ public class communityPatternPage extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         noofpatternscreated = sharedPreferences.getInt("noofpatternscreated", 3);
         //local database initialized
+        communityConstraintLayout = findViewById(R.id.communityConstraintLayout);
         downloadBtn = findViewById(R.id.patternDownloadButton);
         Button deleteBtn = findViewById(R.id.patternDeleteButton);
         TextView nameView = findViewById(R.id.nameView);
@@ -75,46 +78,54 @@ public class communityPatternPage extends AppCompatActivity {
             editor.apply();
             downloadBtn.setEnabled(false);
             downloadBtn.setText(R.string.downloaded);
-            Toast.makeText(communityPatternPage.this, "Pattern Downloaded Successfully!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(communityPatternPage.this, R.string.communityDownloadSuccess, Toast.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(communityConstraintLayout, R.string.communityDownloadSuccess, BaseTransientBottomBar.LENGTH_SHORT);
+            snackbar.show();
         });
         deleteBtn.setOnClickListener(view -> {
             MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(communityPatternPage.this);
-            alert.setTitle("Delete " + name + " ?");
-            alert.setMessage("Are you sure you want to Delete this pattern?").setNegativeButton("Cancel", (dialogInterface, i) -> {
+            alert.setTitle(getString(R.string.delete) + " " + name + " ?");
+            alert.setMessage(R.string.deleteAlertDialogBodyTxt).setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
             });
-            alert.setPositiveButton("Yes", (dialogInterface, i) -> {
-                DatabaseReference dbdelete = databaseReference.child(pid);
-                Task<Void> mTask = dbdelete.removeValue();
-                mTask.addOnSuccessListener(aVoid -> Toast.makeText(communityPatternPage.this, "Deleted From The Community!", Toast.LENGTH_SHORT).show());
-                mTask.addOnFailureListener(e -> Toast.makeText(communityPatternPage.this, "Unknown Error,Couldn't Delete!", Toast.LENGTH_SHORT).show());
+            alert.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+                DatabaseReference dbDelete = databaseReference.child(pid);
+                Task<Void> mTask = dbDelete.removeValue();
+                mTask.addOnSuccessListener(unused -> {
+                    Snackbar snackbar = Snackbar.make(communityConstraintLayout, R.string.communityDeleteSuccess, BaseTransientBottomBar.LENGTH_SHORT);
+                    snackbar.show();
+                });
+                mTask.addOnFailureListener(e -> {
+                    Snackbar snackbar = Snackbar.make(communityConstraintLayout, R.string.communityDeleteFailure, BaseTransientBottomBar.LENGTH_SHORT);
+                    snackbar.show();
+                });
                 finish();
             }).show();
         });
         int pno = 0;
-        ImageView img3 = findViewById(R.id.pattgrid3);
-        ImageView img4 = findViewById(R.id.pattgrid4);
-        ImageView img5 = findViewById(R.id.pattgrid5);
-        ImageView img6 = findViewById(R.id.pattgrid6);
-        ImageView img7 = findViewById(R.id.pattgrid7);
-        ImageView img8 = findViewById(R.id.pattgrid8);
-        ImageView img9 = findViewById(R.id.pattgrid9);
-        ImageView imgA = findViewById(R.id.pattgridA);
-        ImageView imgB = findViewById(R.id.pattgridB);
-        ImageView imgC = findViewById(R.id.pattgridC);
-        ImageView imgD = findViewById(R.id.pattgridD);
-        ImageView imgE = findViewById(R.id.pattgridE);
-        TextView txt3 = findViewById(R.id.patttxt3);
-        TextView txt4 = findViewById(R.id.patttxt4);
-        TextView txt5 = findViewById(R.id.patttxt5);
-        TextView txt6 = findViewById(R.id.patttxt6);
-        TextView txt7 = findViewById(R.id.patttxt7);
-        TextView txt8 = findViewById(R.id.patttxt8);
-        TextView txt9 = findViewById(R.id.patttxt9);
-        TextView txtA = findViewById(R.id.patttxtA);
-        TextView txtB = findViewById(R.id.patttxtB);
-        TextView txtC = findViewById(R.id.patttxtC);
-        TextView txtD = findViewById(R.id.patttxtD);
-        TextView txtE = findViewById(R.id.patttxtE);
+        ImageView img3 = findViewById(R.id.patternImage3);
+        ImageView img4 = findViewById(R.id.patternImage4);
+        ImageView img5 = findViewById(R.id.patternImage5);
+        ImageView img6 = findViewById(R.id.patternImage6);
+        ImageView img7 = findViewById(R.id.patternImage7);
+        ImageView img8 = findViewById(R.id.patternImage8);
+        ImageView img9 = findViewById(R.id.patternImage9);
+        ImageView imgA = findViewById(R.id.patternImageA);
+        ImageView imgB = findViewById(R.id.patternImageB);
+        ImageView imgC = findViewById(R.id.patternImageC);
+        ImageView imgD = findViewById(R.id.patternImageD);
+        ImageView imgE = findViewById(R.id.patternImageE);
+        TextView txt3 = findViewById(R.id.patternTxt3);
+        TextView txt4 = findViewById(R.id.patternTxt4);
+        TextView txt5 = findViewById(R.id.patternTxt5);
+        TextView txt6 = findViewById(R.id.patternTxt6);
+        TextView txt7 = findViewById(R.id.patternTxt7);
+        TextView txt8 = findViewById(R.id.patternTxt8);
+        TextView txt9 = findViewById(R.id.patternTxt9);
+        TextView txtA = findViewById(R.id.patternTxtA);
+        TextView txtB = findViewById(R.id.patternTxtB);
+        TextView txtC = findViewById(R.id.patternTxtC);
+        TextView txtD = findViewById(R.id.patternTxtD);
+        TextView txtE = findViewById(R.id.patternTxtE);
         for (int i = 0; i < sequence.length(); i++) {
             if (sequence.charAt(i) == '1') {
                 i++;
@@ -220,57 +231,6 @@ public class communityPatternPage extends AppCompatActivity {
                         txtE.setText(String.valueOf(++pno));
                         break;
                 }
-                i += 2;
-                switch (sequence.charAt(i)) {
-                    case '3':
-                        img3.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txt3.setText(String.valueOf(++pno));
-                        break;
-                    case '4':
-                        img4.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txt4.setText(String.valueOf(++pno));
-                        break;
-                    case '5':
-                        img5.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txt5.setText(String.valueOf(++pno));
-                        break;
-                    case '6':
-                        img6.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txt6.setText(String.valueOf(++pno));
-                        break;
-                    case '7':
-                        img7.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txt7.setText(String.valueOf(++pno));
-                        break;
-                    case '8':
-                        img8.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txt8.setText(String.valueOf(++pno));
-                        break;
-                    case '9':
-                        img9.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txt9.setText(String.valueOf(++pno));
-                        break;
-                    case 'A':
-                        imgA.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txtA.setText(String.valueOf(++pno));
-                        break;
-                    case 'B':
-                        imgB.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txtB.setText(String.valueOf(++pno));
-                        break;
-                    case 'C':
-                        imgC.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txtC.setText(String.valueOf(++pno));
-                        break;
-                    case 'D':
-                        imgD.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txtD.setText(String.valueOf(++pno));
-                        break;
-                    case 'E':
-                        imgE.setImageTintList(ColorStateList.valueOf(Color.parseColor("#2274A5")));
-                        txtE.setText(String.valueOf(++pno));
-                        break;
-                }
             }
         }
     }
@@ -284,7 +244,7 @@ public class communityPatternPage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
+            supportFinishAfterTransition();
             return true;
         }
         return super.onOptionsItemSelected(item);

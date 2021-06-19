@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.aditya.hopon">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,21 +14,30 @@
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HopOn">
-        <activity android:name=".communityPatternPage" />
+        <activity
+            android:name=".communityPatternPage"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".communityActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".mainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".patternsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".mainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".UserGenActivity"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity">
+            android:name=".userGenActivity"
+            android:parentActivityName=".mainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".mainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

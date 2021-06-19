@@ -34,4 +34,8 @@ public class Patterns {
     public String getAuthor() {
         return author;
     }
+
+    public String getPid() {
+        return pid;
+    }
 }

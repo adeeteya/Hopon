@@ -12,7 +12,7 @@
     <color name="material_blue">#536DFE</color>
     <color name="colorGrey">#dddddd</color>
 
-    <color name="userGenBtnbg">#262626</color>
+    <color name="userGenBtnBg">#262626</color>
 
 
     <color name="cod_gray">#121212</color>
@@ -20,5 +20,5 @@
     <color name="play_button_color">#40B88E</color>
     <!--retro pattern grid colors-->
     <color name="amaranth">#E63946</color>
-
+    <color name="card_bg">#262626</color>
 </resources>

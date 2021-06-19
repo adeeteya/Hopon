@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/communityConstraintLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -59,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameModeIcon">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/patternDeleteButton"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
@@ -72,7 +73,7 @@
             android:textSize="12sp"
             android:visibility="gone" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/patternDownloadButton"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -80,6 +81,7 @@
             android:layout_weight="1"
             android:focusable="false"
             android:text="@string/download"
+            style="@style/Widget.MaterialComponents.Button"
             android:textAllCaps="false"
             android:textSize="12sp" />
     </LinearLayout>
@@ -97,13 +99,14 @@
         app:layout_constraintTop_toBottomOf="@id/buttonBarLayout">
 
         <FrameLayout
+            android:transitionName="tframe_C"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgridC"
+                android:id="@+id/patternImageC"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/TileC"
@@ -111,7 +114,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxtC"
+                android:id="@+id/patternTxtC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -120,13 +123,14 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_D"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgridD"
+                android:id="@+id/patternImageD"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/TileD"
@@ -134,7 +138,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxtD"
+                android:id="@+id/patternTxtD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -143,13 +147,14 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_E"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgridE"
+                android:id="@+id/patternImageE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/TileE"
@@ -157,7 +162,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxtE"
+                android:id="@+id/patternTxtE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -166,13 +171,14 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_9"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgrid9"
+                android:id="@+id/patternImage9"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/Tile9"
@@ -180,7 +186,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxt9"
+                android:id="@+id/patternTxt9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -189,13 +195,14 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_A"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgridA"
+                android:id="@+id/patternImageA"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/TileA"
@@ -203,7 +210,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxtA"
+                android:id="@+id/patternTxtA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -212,13 +219,14 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_B"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgridB"
+                android:id="@+id/patternImageB"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/TileB"
@@ -226,7 +234,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxtB"
+                android:id="@+id/patternTxtB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -235,13 +243,14 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_6"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgrid6"
+                android:id="@+id/patternImage6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/Tile6"
@@ -249,7 +258,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxt6"
+                android:id="@+id/patternTxt6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -258,13 +267,14 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_7"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgrid7"
+                android:id="@+id/patternImage7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/Tile7"
@@ -272,7 +282,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxt7"
+                android:id="@+id/patternTxt7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -281,13 +291,14 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_8"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
 
             <ImageView
-                android:id="@+id/pattgrid8"
+                android:id="@+id/patternImage8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/Tile8"
@@ -295,7 +306,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxt8"
+                android:id="@+id/patternTxt8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -304,6 +315,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_3"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
@@ -311,7 +323,7 @@
             android:layout_marginBottom="15dp">
 
             <ImageView
-                android:id="@+id/pattgrid3"
+                android:id="@+id/patternImage3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/Tile3"
@@ -319,7 +331,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxt3"
+                android:id="@+id/patternTxt3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -328,6 +340,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_4"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
@@ -335,7 +348,7 @@
             android:layout_marginBottom="15dp">
 
             <ImageView
-                android:id="@+id/pattgrid4"
+                android:id="@+id/patternImage4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/Tile4"
@@ -343,7 +356,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxt4"
+                android:id="@+id/patternTxt4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -352,6 +365,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:transitionName="tframe_5"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
@@ -359,7 +373,7 @@
             android:layout_marginBottom="15dp">
 
             <ImageView
-                android:id="@+id/pattgrid5"
+                android:id="@+id/patternImage5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/Tile5"
@@ -367,7 +381,7 @@
                 android:tintMode="multiply" />
 
             <TextView
-                android:id="@+id/patttxt5"
+                android:id="@+id/patternTxt5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

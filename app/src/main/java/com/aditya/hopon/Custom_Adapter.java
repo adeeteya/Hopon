@@ -30,18 +30,18 @@ public class Custom_Adapter extends SimpleCursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         super.bindView(view, context, cursor);
-        TextView patternid = view.findViewById(R.id.patternid);
-        TextView patternsequence = view.findViewById(R.id.patternsequence);
-        TextView patternname = view.findViewById(R.id.patternname);
-        TextView patternmode = view.findViewById(R.id.patternmode);
-        TextView patternmodetxt = view.findViewById(R.id.patternmodetxt);
-        ImageView pattternmodeic = view.findViewById(R.id.patternmodeic);
-        if (patternmode.getText().toString().equals("1")) {
-            pattternmodeic.setImageResource(R.drawable.ic_baseline_videogame_asset_24);
-            patternmodetxt.setText(R.string.normalmode);
+        TextView patternId = view.findViewById(R.id.patternId);
+        TextView patternSequence = view.findViewById(R.id.patternSequence);
+        TextView patternName = view.findViewById(R.id.patternName);
+        TextView patternMode = view.findViewById(R.id.patternMode);
+        TextView patternModeTxt = view.findViewById(R.id.patternModeTxt);
+        ImageView patternModeIcon = view.findViewById(R.id.patternModeIcon);
+        if (patternMode.getText().toString().equals("1")) {
+            patternModeIcon.setImageResource(R.drawable.ic_baseline_videogame_asset_24);
+            patternModeTxt.setText(R.string.normal_mode);
         } else {
-            pattternmodeic.setImageResource(R.drawable.ic_baseline_timer_24);
-            patternmodetxt.setText(R.string.timedmode);
+            patternModeIcon.setImageResource(R.drawable.ic_baseline_timer_24);
+            patternModeTxt.setText(R.string.timed_mode);
         }
     }
 

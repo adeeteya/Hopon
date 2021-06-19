@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Hop on</string>
-    <string name="game_mode1">Patterns</string>
+    <string name="main_box_mainText">Patterns</string>
     <string name="play">Play</string>
     <string name="delete">Delete</string>
     <string name="download">"Download</string>
     <string name="downloaded">"Downloaded</string>
     <string name="search">Search</string>
-    <string name="normalmode">Normal Mode</string>
-    <string name="timedmode">Timed Mode</string>
+    <string name="normal_mode">Normal Mode</string>
+    <string name="timed_mode">Timed Mode</string>
     <string name="disconnected">Disconnected</string>
-    <string-array name="gamemodes">
+    <string-array name="gameModes">
         <item>Normal Mode</item>
         <item>Timed Mode</item>
     </string-array>
@@ -27,21 +27,20 @@
     <string name="TileE" translatable="false">E</string>
     <string name="st_place">st place</string>
     <string name="wifi_network">HopOn Board</string>
-    <string name="choose_from_the_different_patterns">All the downloaded and user created patterns</string>
+    <string name="main_box_bottomText">All the downloaded and user created patterns</string>
     <string name="patterns">patterns</string>
-    <string name="tap_to_connect">Tap to Connect</string>
+    <string name="connection_box_bottomText">Tap to Connect</string>
     <string name="connected">Connected</string>
-    <string name="compete_with_friends">Compete with Friends</string>
-    <string name="connection_status">Connection Status</string>
-    <string name="leaderboard">Leaderboard</string>
-    <string name="create_a_new_pattern">Create a new pattern</string>
+    <string name="leaderboard_box_bottomText">Compete with Friends</string>
+    <string name="connectionStatus_box">Connection Status</string>
+    <string name="leaderboard_box_mainText">Leaderboard</string>
+    <string name="createPattern_box_bottomText">Create a new pattern</string>
     <string name="create_pattern">Create Pattern</string>
     <string name="community">Community</string>
-    <string name="uploadtocommunity">Upload to the Community</string>
-    <string name="patterns_from_other_users">Download patterns</string>
+    <string name="upload_to_community">Upload to the Community</string>
+    <string name="community_box_bottomText">Download patterns</string>
     <string name="no_patterns">No Patterns Found</string>
     <string name="enter_the_name_of_the_pattern">Pattern name</string>
-    <string name="game_mode">Game mode</string>
     <string name="add_this_pattern">Add This Pattern</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
     <string name="arrow_icon">arrow_icon</string>
@@ -50,11 +49,38 @@
     <string name="white_tile">white_tile</string>
     <string name="show_tips">Show tips on start</string>
     <string name="instruction_txt">Switch the state of each box according to the legend provided above to make a pattern sequence. A particular tile can only be used once in the sequence. Once a tile is in blue state(double jump) it\'s following tile should also be in the blue state(because it\'s a double jump). Every time a box is clicked it\'s position in the sequence is displayed.Removing a box from the sequence will re-update the entire sequence.The created pattern could also be uploaded to the community(by checking the community box) for other user\'s or friend\'s to download.</string>
-    <string name="bluelegendtxt">Denotes two legs(Double) jump, Clicking on this will delete the tile from the sequence(white box).</string>
-    <string name="redlegendtxt">Denotes one leg(single) jump, clicking on this will switch the tile to a double jump(blue box).</string>
-    <string name="whitelegendtxt">Denotes an empty tile(not in the sequence), Clicking on this will switch the tile to a single jump(red box).</string>
+    <string name="blueLegendTxt">Denotes two legs(Double) jump, Clicking on this will delete the tile from the sequence(white box).</string>
+    <string name="redLegendTxt">Denotes one leg(single) jump, clicking on this will switch the tile to a double jump(blue box).</string>
+    <string name="whiteLegendTxt">Denotes an empty tile(not in the sequence), Clicking on this will switch the tile to a single jump(red box).</string>
     <string name="legend">Legend</string>
     <string name="clear">Clear</string>
     <string name="change_language">Change Language</string>
     <string name="pattern_mode_icon">Pattern Mode Icon</string>
+    <string name="wifiAlertDialogTitle">Connect to The HopOn board</string>
+    <string name="wifiAlertDialogDesc">Select the Hopon SSID and enter the password provided in the instruction manual in the next screen</string>
+    <string name="ok">OK</string>
+    <string name="not_connected_to_the_board">Not Connected to the Board</string>
+    <string name="connection_timed_out">Connection Timed Out!</string>
+    <string name="unable_to_connect_to_the_board">Unable to Connect to the board</string>
+    <string name="pattern_sent_successfully">Pattern Sent Successfully</string>
+    <string name="cancel">Cancel</string>
+    <string name="deleteAlertDialogBodyTxt">Are you sure you want to Delete this pattern?</string>
+    <string name="yes">Yes</string>
+    <string name="delete_success_txt">Pattern Removed Successfully</string>
+    <string name="createPatternTipsDialogTitle">Instructions to create a Pattern</string>
+    <string name="createPatternNegativeBtnTxt">Don\'t show this again</string>
+    <string name="nameInputMaxCharReachedError">Maximum 20 characters only</string>
+    <string name="nameInputNoNameEnteredError">Please Enter the name of the pattern</string>
+    <string name="no_sequence_error">Please Make The Pattern</string>
+    <string name="invalid_no_of_double_tiles">Invalid Number of Double Tiles</string>
+    <string name="invalid_double_tile_sequence">Invalid Double Tile Sequence</string>
+    <string name="submitBtnCommunitySuccess">Custom Pattern Uploaded Successfully</string>
+    <string name="submitBtnFailure">Custom Pattern Added but couldn\'t upload to Community</string>
+    <string name="submitBtnSuccess">Custom Pattern Added</string>
+    <string name="communityLoginFailure">Login Failed!,try again later</string>
+    <string name="welcome">"Welcome "</string>
+    <string name="communityDownloadSuccess">Pattern Downloaded Successfully!</string>
+    <string name="communityDeleteSuccess">Deleted From The Community!</string>
+    <string name="communityDeleteFailure">Unknown Error,Couldn\'t Delete!</string>
+    <string name="mode">Mode</string>
 </resources>

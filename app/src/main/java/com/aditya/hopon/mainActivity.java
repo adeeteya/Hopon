@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -36,24 +35,25 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-public class MainActivity extends AppCompatActivity {
+public class mainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
-    private boolean darkmodetoggle;
+    private boolean darkModeToggle;
     private int noofpatternscreated, noofcommunitypatterns;
     private String ssid = null;
     final String FineLocation = Manifest.permission.ACCESS_FINE_LOCATION;
-    private ImageView wificonnectionic;
-    private TextView connectionstatustxt;
-    private TextView noofpatternscreatedtxt;
-    private TextView connectiondesctxt, onlinepatternscount;
+    private ImageView wifiConnectionIcon;
+    private TextView connectionStatusTxt;
+    private TextView noOfPatternsCreatedTxt;
+    private TextView wifiConnectionDescTxt, onlinePatternsCountTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadData();
-        if (darkmodetoggle) {
+        if (darkModeToggle) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -74,36 +74,36 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView toolbartitle = findViewById(R.id.toolbar_title);
-        toolbartitle.setText(R.string.app_name);
+        TextView toolbarTitle = findViewById(R.id.toolbar_title);
+        toolbarTitle.setText(R.string.app_name);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        onlinepatternscount = findViewById(R.id.onlinepatterncounttxt);
-        LinearLayout patternmainlayout = findViewById(R.id.pattern_main_layout);
-        CardView custompatterncard = findViewById(R.id.custompatterncard);
-        CardView communitycard = findViewById(R.id.communitycard);
-        CardView wificonnectioncard = findViewById(R.id.wificonnectioncard);
-        wificonnectionic = findViewById(R.id.wificonnectionic);
-        connectionstatustxt = findViewById(R.id.connectionstatustxt);
-        connectiondesctxt = findViewById(R.id.wificonnectiondesctext);
-        noofpatternscreatedtxt = findViewById(R.id.noofpatternscreatedtxt);
-        patternmainlayout.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, patternsActivity.class);
+        onlinePatternsCountTxt = findViewById(R.id.onlinePatternCountTxt);
+        LinearLayout patternCard = findViewById(R.id.patternCard);
+        CardView customPatternCard = findViewById(R.id.customPatternCard);
+        CardView communityCard = findViewById(R.id.communityCard);
+        CardView wifiConnectionCard = findViewById(R.id.wifiConnectionCard);
+        wifiConnectionIcon = findViewById(R.id.wifiConnectionIcon);
+        connectionStatusTxt = findViewById(R.id.connectionStatusTxt);
+        wifiConnectionDescTxt = findViewById(R.id.wifiConnectionDescTxt);
+        noOfPatternsCreatedTxt = findViewById(R.id.noOfPatternsCreatedTxt);
+        patternCard.setOnClickListener(view -> {
+            Intent intent = new Intent(mainActivity.this, patternsActivity.class);
             startActivity(intent);
         });
-        communitycard.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, communityActivity.class);
+        communityCard.setOnClickListener(view -> {
+            Intent intent = new Intent(mainActivity.this, communityActivity.class);
             startActivity(intent);
         });
-        custompatterncard.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, UserGenActivity.class);
+        customPatternCard.setOnClickListener(view -> {
+            Intent intent = new Intent(mainActivity.this, userGenActivity.class);
             startActivity(intent);
         });
-        wificonnectioncard.setOnClickListener(view -> {
-            if (connectionstatustxt.getText().toString().equals("Disconnected")) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Connect to The HopOn board").setIcon(R.drawable.ic_baseline_wifi_24).setMessage("Select the Hopon SSID and enter the password provided in the instruction manual in the next screen");
-                builder.setPositiveButton("OK", (dialogInterface, i) -> {
+        wifiConnectionCard.setOnClickListener(view -> {
+            if (connectionStatusTxt.getText().toString().equals(getString(R.string.disconnected))) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(mainActivity.this);
+                builder.setTitle(R.string.wifiAlertDialogTitle).setIcon(R.drawable.ic_baseline_wifi_24).setMessage(R.string.wifiAlertDialogDesc);
+                builder.setPositiveButton(R.string.ok, (dialogInterface, i) -> {
                     Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
                     startActivity(intent);
                 });
@@ -116,17 +116,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         loadData();
-        onlinepatternscount.setText(String.valueOf(noofcommunitypatterns));
-        noofpatternscreatedtxt.setText(String.valueOf(noofpatternscreated));
-        wifistatuscheck();
-        locationstatusCheck();
+        onlinePatternsCountTxt.setText(String.valueOf(noofcommunitypatterns));
+        noOfPatternsCreatedTxt.setText(String.valueOf(noofpatternscreated));
+        wifiStatusCheck();
+        locationStatusCheck();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.my_menu,menu);
-        if (darkmodetoggle) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        if (darkModeToggle) {
             menu.findItem(R.id.enable_dark_mode_button).setChecked(true);
         }
         return true;
@@ -137,12 +137,12 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.enable_dark_mode_button) {
             if (item.isChecked()) {
                 item.setChecked(false);
-                darkmodetoggle = false;
+                darkModeToggle = false;
                 saveData();
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             } else {
                 item.setChecked(true);
-                darkmodetoggle = true;
+                darkModeToggle = true;
                 saveData();
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             }
@@ -158,19 +158,19 @@ public class MainActivity extends AppCompatActivity {
     public void saveData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("enabledarkmode", darkmodetoggle);
+        editor.putBoolean("enabledarkmode", darkModeToggle);
         editor.putInt("noofpatternscreated", noofpatternscreated);
         editor.apply();
     }
 
     public void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        darkmodetoggle = sharedPreferences.getBoolean("enabledarkmode", false);
+        darkModeToggle = sharedPreferences.getBoolean("enabledarkmode", false);
         noofpatternscreated = sharedPreferences.getInt("noofpatternscreated", 3);
         noofcommunitypatterns = sharedPreferences.getInt("noofcommunitypatterns", 50);
     }
 
-    public void locationstatusCheck() {
+    public void locationStatusCheck() {
         if (checkSelfPermission(FineLocation) != PackageManager.PERMISSION_GRANTED) return;
         LocationRequest mLocationRequest = LocationRequest.create().setPriority(LocationRequest.PRIORITY_LOW_POWER);
         LocationSettingsRequest.Builder settingsBuilder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         try {
                             ResolvableApiException resolvableApiException = (ResolvableApiException) ex;
-                            resolvableApiException.startResolutionForResult(MainActivity.this, 199);
+                            resolvableApiException.startResolutionForResult(mainActivity.this, 199);
                         } catch (IntentSender.SendIntentException ignored) {
                         }
                         break;
@@ -195,21 +195,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void wifistatuscheck() {
+    public void wifiStatusCheck() {
         final WifiManager wifiManager = (WifiManager) getBaseContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         final WifiInfo connectionInfo = wifiManager.getConnectionInfo();
         if (connectionInfo != null) {
             ssid = connectionInfo.getSSID();
             ssid = ssid.substring(1, ssid.length() - 1);
         }
-        if (ssid.equals("Aditya")) {
-            wificonnectionic.setImageTintList(ColorStateList.valueOf(Color.parseColor("#68B684")));
-            connectionstatustxt.setText(R.string.connected);
-            connectiondesctxt.setText(R.string.wifi_network);
+        if (ssid.equals("Hopon")) {
+            wifiConnectionIcon.setImageTintList(ColorStateList.valueOf(Color.parseColor("#68B684")));
+            connectionStatusTxt.setText(R.string.connected);
+            wifiConnectionDescTxt.setHint(R.string.wifi_network);
         } else {
-            wificonnectionic.setImageTintList(ColorStateList.valueOf(Color.parseColor("#E63946")));
-            connectionstatustxt.setText(R.string.disconnected);
-            connectiondesctxt.setText(R.string.tap_to_connect);
+            wifiConnectionIcon.setImageTintList(ColorStateList.valueOf(Color.parseColor("#E63946")));
+            connectionStatusTxt.setText(R.string.disconnected);
+            wifiConnectionDescTxt.setHint(R.string.connection_box_bottomText);
         }
     }
 
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 199) {// Check for the integer request code originally supplied to startResolutionForResult().
             switch (resultCode) {
                 case Activity.RESULT_OK:
-                    wifistatuscheck();
+                    wifiStatusCheck();
                     break;
                 case Activity.RESULT_CANCELED:
                     break;

@@ -9,7 +9,8 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">#262626</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Text color. -->
         <item name="android:textColorPrimary">#A9FFFFFF</item>
         <item name="android:textColorSecondary">#80FFFFFF</item>
         <!-- Status bar color. -->

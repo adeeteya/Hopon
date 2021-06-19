@@ -19,23 +19,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/patternid"
+                    android:id="@+id/patternId"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
-                    android:layout_toStartOf="@id/patternname"
+                    android:layout_toStartOf="@id/patternName"
                     android:gravity="center_vertical"
                     android:textSize="20sp"
                     android:fontFamily="@font/uniformroundedextracondensedblack"
                     android:textColor="?android:attr/textColorPrimary" />
                 <TextView
-                    android:id="@+id/patternsequence"
+                    android:id="@+id/patternSequence"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:visibility="invisible"/>
                 <TextView
-                    android:id="@+id/patternname"
+                    android:id="@+id/patternName"
                     android:layout_width="wrap_content"
                     android:layout_centerInParent="true"
                     android:textSize="20sp"
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/patternmodeic"
+                    android:id="@+id/patternModeIcon"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="10dp"
                     android:layout_marginTop="20dp"
@@ -52,18 +52,18 @@
                     android:layout_height="50dp" />
 
                 <TextView
-                    android:id="@id/patternmode"
+                    android:id="@id/patternMode"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:visibility="invisible" />
 
                 <TextView
-                    android:id="@+id/patternmodetxt"
+                    android:id="@+id/patternModeTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:layout_marginEnd="10dp"
-                    android:layout_below="@id/patternmodeic"
+                    android:layout_below="@id/patternModeIcon"
                     android:layout_alignParentEnd="true" />
             </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

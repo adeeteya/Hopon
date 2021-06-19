@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/relativelistlayout"
+    android:id="@+id/relativeListLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".communityActivity">
@@ -44,7 +44,7 @@
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/communityrecyclerview"
+        android:id="@+id/communityRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar" />

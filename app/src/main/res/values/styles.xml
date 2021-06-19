@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="mainActivityCard" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="cardElevation">8dp</item>
+        <item name="cardCornerRadius">16dp</item>
+    </style>
+
+    <style name="mainActivityCardHeadingTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_marginStart">21dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="mainActivityCardBottomStatsTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_marginStart">21dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:fontFamily">@font/uniformroundedextracondensedblack</item>
+        <item name="android:textSize">38sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="userGeneratedButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:background">@drawable/box_user_generated</item>
+        <item name="android:backgroundTint">@color/userGenBtnBg</item>
+        <item name="android:backgroundTintMode">multiply</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>

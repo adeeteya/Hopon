@@ -1,9 +1,11 @@
 package com.aditya.hopon;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +42,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class communityActivity extends AppCompatActivity implements Custom_Community_Adapter.OnPatternClickListener {
     private int noofcommunitypatterns;
@@ -48,7 +51,7 @@ public class communityActivity extends AppCompatActivity implements Custom_Commu
     private SharedPreferences sharedPreferences;
     private Custom_Community_Adapter adapter;
     private FirebaseAuth firebaseAuth;
-    private List<Patterns> patternslist;
+    private List<Patterns> patternsList;
     private ShimmerFrameLayout shimmerFrameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +63,10 @@ public class communityActivity extends AppCompatActivity implements Custom_Commu
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        relativeLayout = findViewById(R.id.relativelistlayout);
-        recyclerView = findViewById(R.id.communityrecyclerview);
+        relativeLayout = findViewById(R.id.relativeListLayout);
+        recyclerView = findViewById(R.id.communityRecyclerView);
         shimmerFrameLayout = findViewById(R.id.shimmerFrameLayout);
-        patternslist = new ArrayList<>();
+        patternsList = new ArrayList<>();
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("233640760574-d18montuoivkeukg6umbfmfsh0h3rmkr.apps.googleusercontent.com")
@@ -87,9 +90,9 @@ public class communityActivity extends AppCompatActivity implements Custom_Commu
                                     firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(task -> {
                                         if (task.isSuccessful()) {
                                             //write logged in code here
-                                            communitydisplay();
+                                            communityDisplay();
                                         } else {
-                                            Toast.makeText(communityActivity.this, "Login Failed!,try again later", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(communityActivity.this, R.string.communityLoginFailure, Toast.LENGTH_SHORT).show();
                                             finish();
                                         }
                                     });
@@ -103,15 +106,15 @@ public class communityActivity extends AppCompatActivity implements Custom_Commu
             Intent intent = googleSignInClient.getSignInIntent();
             someActivityResultLauncher.launch(intent);
         } else {
-            communitydisplay();
+            communityDisplay();
         }
     }
 
-    private void communitydisplay() {
+    private void communityDisplay() {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null) {
-            Snackbar snackbar = Snackbar.make(relativeLayout, "Welcome " + firebaseUser.getDisplayName(), BaseTransientBottomBar.LENGTH_SHORT);
+            Snackbar snackbar = Snackbar.make(relativeLayout, getString(R.string.welcome) + firebaseUser.getDisplayName(), BaseTransientBottomBar.LENGTH_SHORT);
             snackbar.show();
         }
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Patterns");
@@ -120,13 +123,13 @@ public class communityActivity extends AppCompatActivity implements Custom_Commu
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 shimmerFrameLayout.stopShimmerAnimation();
                 shimmerFrameLayout.setVisibility(View.GONE);
-                patternslist.clear();
+                patternsList.clear();
                 for (DataSnapshot patternDatasnap : snapshot.getChildren()) {
                     noofcommunitypatterns = (int) snapshot.getChildrenCount();
                     Patterns patterns = patternDatasnap.getValue(Patterns.class);
-                    patternslist.add(patterns);
+                    patternsList.add(patterns);
                 }
-                adapter = new Custom_Community_Adapter(communityActivity.this, patternslist, communityActivity.this);
+                adapter = new Custom_Community_Adapter(communityActivity.this, patternsList, communityActivity.this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(communityActivity.this));
             }
@@ -151,13 +154,13 @@ public class communityActivity extends AppCompatActivity implements Custom_Commu
 
             @Override
             public boolean onQueryTextChange(String s) {
-                List<Patterns> filteredpatternsList = new ArrayList<>();
-                for (Patterns item : patternslist) {
+                List<Patterns> filteredPatternsList = new ArrayList<>();
+                for (Patterns item : patternsList) {
                     if (item.getName().toLowerCase().contains(s.toLowerCase())) {
-                        filteredpatternsList.add(item);
+                        filteredPatternsList.add(item);
                     }
                 }
-                adapter.filterlist(filteredpatternsList);
+                adapter.filterList(filteredPatternsList);
                 return false;
             }
         });
@@ -174,21 +177,34 @@ public class communityActivity extends AppCompatActivity implements Custom_Commu
     }
 
     @Override
-    public void OnPatternClick(int position) {
+    public void OnPatternClick(int position, View view) {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        Patterns pattern = patternslist.get(position);
-        Boolean currentUser = pattern.getUid().equals(firebaseUser.getUid());
+        Patterns pattern = patternsList.get(position);
+        Boolean currentUser = pattern.getUid().equals(Objects.requireNonNull(firebaseUser).getUid());
         Intent intent = new Intent(communityActivity.this, communityPatternPage.class);
         intent.putExtra("name", pattern.name);
         intent.putExtra("sequence", pattern.sequence);
         intent.putExtra("mode", pattern.mode);
         intent.putExtra("author", pattern.author);
         intent.putExtra("isUser", currentUser);
-        intent.putExtra("pid", pattern.pid);
-        /*ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this,view.findViewById(R.id.patternGridLayout),"grid_transition");
-        startActivity(intent,activityOptions.toBundle());*/
-        startActivity(intent);
+        intent.putExtra("pid", pattern.getPid());
+
+        //shared element transition
+        Pair<View, String> p3 = Pair.create(view.findViewById(R.id.frame_3), "tframe_3");
+        Pair<View, String> p4 = Pair.create(view.findViewById(R.id.frame_4), "tframe_4");
+        Pair<View, String> p5 = Pair.create(view.findViewById(R.id.frame_5), "tframe_5");
+        Pair<View, String> p6 = Pair.create(view.findViewById(R.id.frame_6), "tframe_6");
+        Pair<View, String> p7 = Pair.create(view.findViewById(R.id.frame_7), "tframe_7");
+        Pair<View, String> p8 = Pair.create(view.findViewById(R.id.frame_8), "tframe_8");
+        Pair<View, String> p9 = Pair.create(view.findViewById(R.id.frame_9), "tframe_9");
+        Pair<View, String> pA = Pair.create(view.findViewById(R.id.frame_A), "tframe_A");
+        Pair<View, String> pB = Pair.create(view.findViewById(R.id.frame_B), "tframe_B");
+        Pair<View, String> pC = Pair.create(view.findViewById(R.id.frame_C), "tframe_C");
+        Pair<View, String> pD = Pair.create(view.findViewById(R.id.frame_D), "tframe_D");
+        Pair<View, String> pE = Pair.create(view.findViewById(R.id.frame_E), "tframe_E");
+        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, p3, p4, p5, p6, p7, p8, p9, pA, pB, pC, pD, pE);
+        startActivity(intent, activityOptions.toBundle());
     }
 
     @Override
